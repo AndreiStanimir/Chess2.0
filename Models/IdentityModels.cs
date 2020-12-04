@@ -21,7 +21,7 @@ namespace Chess20.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("ChessDBConnectionString", throwIfV1Schema: false)
         {
         }
 
