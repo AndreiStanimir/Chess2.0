@@ -13,8 +13,7 @@ namespace Chess20
         {
             //Database.SetInitializer(new ChessDBInitializer());
         }
-       
 
-
+        public System.Data.Entity.DbSet<Chess20.Models.Game> Games { get; set; }
     }
 }
