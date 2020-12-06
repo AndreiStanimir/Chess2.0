@@ -11,12 +11,9 @@ namespace Chess20
     {
         public ChessDbContext() : base("ChessDBConnectionString")
         {
-            Database.SetInitializer(new ChessDBInitializer());
+            //Database.SetInitializer(new ChessDBInitializer());
         }
-        public DbSet<User> Users { get; set; }
-        public DbSet<Score> Scores{ get; set; }
-        public DbSet<Gamemode> Gamemodes { get; set; }
-        public DbSet<Game> Games { get; set; }
+       
 
 
     }

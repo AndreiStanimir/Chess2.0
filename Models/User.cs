@@ -9,10 +9,12 @@ using System.Web;
 
 namespace Chess20.Models
 {
+    [Table("Users")]
     public class User
     {
         [Key]
         //[ForeignKey("Game")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }   
@@ -24,7 +26,9 @@ namespace Chess20.Models
 
         //public int ScoreId { get; set; }
         
-        //[ForeignKey("ScoreId")]
-        public virtual Score Score { get; set; }    
+        public virtual Score Score { get; set; }
+
+        
+        public ICollection<Game> Games { get; set; }
     }
 }

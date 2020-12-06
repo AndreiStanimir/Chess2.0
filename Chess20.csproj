@@ -182,6 +182,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Gamemode.cs" />
     <Compile Include="Models\IdentityModels.cs" />

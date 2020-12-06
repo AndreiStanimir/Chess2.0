@@ -13,12 +13,12 @@ namespace Chess20.Controllers
 {
     public class UsersController : Controller
     {
-        private ChessDbContext db = new ChessDbContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Users
         public ActionResult Index()
         {
-            var users = db.Users.Include(u => u.Score);
+            var users = db.UsersData.Include(u => u.Score);
             return View(users.ToList());
         }
 
@@ -29,7 +29,7 @@ namespace Chess20.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            User user = db.UsersData.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -53,7 +53,7 @@ namespace Chess20.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Users.Add(user);
+                db.UsersData.Add(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -69,7 +69,7 @@ namespace Chess20.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            User user = db.UsersData.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -102,7 +102,7 @@ namespace Chess20.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            User user = db.UsersData.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -115,8 +115,8 @@ namespace Chess20.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            User user = db.Users.Find(id);
-            db.Users.Remove(user);
+            User user = db.UsersData.Find(id);
+            db.UsersData.Remove(user);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

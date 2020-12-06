@@ -1,5 +1,6 @@
 ﻿using Chess20.Common;
 using Chess20.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,37 +9,41 @@ using System.Web;
 
 namespace Chess20
 {
-    public class ChessDBInitializer : DropCreateDatabaseAlways<ChessDbContext>
+    public class ChessDBInitializer : DropCreateDatabaseAlways<ApplicationDbContext>
     {
-        protected override void Seed(ChessDbContext context)
+        protected override void Seed(ApplicationDbContext context)
         {
-
+            var score1 = new Score();
+            var score2 = new Score();
+            context.Scores.Add(score1);
+            context.Scores.Add(score2);
             User admin = new User
             {
-                UserId = 0,
+                //UserId = 0,
                 Email = "admin@chess.com",
                 Password = "123",
                 Name = "admin",
                 Role = Roles.Admin,
-                Score = new Score()
+                Score = score1
             };
+
             User player = new User
             {
-                UserId = 1,
+                //UserId = 1,
                 Email = "player@chess.com",
                 Password = "123",
                 Name = "player",
                 Role = Roles.User,
-                Score = new Score()
+                Score = score2
             };
             List<User> users = new List<User>();
             users.Add(admin);
             users.Add(player);
-            context.Users.AddRange(users);
 
+            context.UsersData.AddRange(users);
             Gamemode gamemode = new Gamemode
             {
-                GamemodeId = 0,
+                //GamemodeId = 0,
                 Name = "Classic",
                 Time = 10 * 60,
                 Increment = 5
@@ -47,14 +52,14 @@ namespace Chess20
 
             Game game = new Game
             {
-                GameId = 0,
+                //GameId = 0,
                 Moves = "e4e5",
-                //Player1 = admin,
-                //Player2 = player,
+                Player1 = admin,
+                Player2 = admin,
                 Winner = Winner.Draw
             };
             context.Games.Add(game);
-            context.Scores.Add(new Score());
+
 
             context.SaveChanges();
             base.Seed(context);
