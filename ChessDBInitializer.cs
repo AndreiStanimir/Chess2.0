@@ -19,7 +19,6 @@ namespace Chess20
             context.Scores.Add(score2);
             User admin = new User
             {
-                //UserId = 0,
                 Email = "admin@chess.com",
                 Password = "123",
                 Name = "admin",
@@ -29,7 +28,6 @@ namespace Chess20
 
             User player = new User
             {
-                //UserId = 1,
                 Email = "player@chess.com",
                 Password = "123",
                 Name = "player",
@@ -52,10 +50,9 @@ namespace Chess20
 
             Game game = new Game
             {
-                //GameId = 0,
                 Moves = "e4e5",
                 Player1 = admin,
-                Player2 = admin,
+                Player2 = player,
                 Winner = Winner.Draw
             };
             context.Games.Add(game);

@@ -9,7 +9,6 @@ namespace Chess20.Models
     {
         
         [ForeignKey("User")]
-        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ScoreId { get; set; }
         public int Elo { get; set; }
         public int Wins { get; set; }

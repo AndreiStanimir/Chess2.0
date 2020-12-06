@@ -13,7 +13,6 @@ namespace Chess20.Models
     public class User
     {
         [Key]
-        //[ForeignKey("Game")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
         public string Name { get; set; }
@@ -22,9 +21,6 @@ namespace Chess20.Models
         public string Password { get; set; }
 
         [Required]
-        //public int ScoreId { get; set; }
-
-        //public int ScoreId { get; set; }
         
         public virtual Score Score { get; set; }
 
