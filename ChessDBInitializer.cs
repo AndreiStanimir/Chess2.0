@@ -35,7 +35,7 @@ namespace Chess20
 
                 Email = "admin2@chess.com",
                 //Password = "123",
-                Name = "admin2",
+               
 
                 //Role = Roles.ApplicationUser,
                 Score = score1
@@ -50,7 +50,6 @@ namespace Chess20
 
                 Email = "player@chess.com",
                 //Password = "123",
-                Name = "player2",
 
                 //Role = Roles.ApplicationUser,
                 Score = score2

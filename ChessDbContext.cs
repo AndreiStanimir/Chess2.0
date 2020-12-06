@@ -15,5 +15,7 @@ namespace Chess20
         }
 
         public System.Data.Entity.DbSet<Chess20.Models.Game> Games { get; set; }
+
+        public System.Data.Entity.DbSet<Chess20.Models.Gamemode> Gamemodes { get; set; }
     }
 }
