@@ -4,6 +4,11 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Owin;
 using System.Collections.Generic;
+using Microsoft.SqlServer.Server;
+using System.Data.SqlClient;
+using Microsoft.SqlServer.Management;
+using System.Data.Entity;
+using Microsoft.SqlServer.Management.Smo;
 
 [assembly: OwinStartupAttribute(typeof(Chess20.Startup))]
 namespace Chess20
@@ -14,7 +19,7 @@ namespace Chess20
         {
             ConfigureAuth(app);
             CreateAdminAndUserRoles();
-           
+
         }
 
         private void CreateAdminAndUserRoles()
@@ -26,27 +31,42 @@ namespace Chess20
             new UserStore<ApplicationUser>(context));
             // adaugam rolurile pe care le poate avea un utilizator
             // din cadrul aplicatiei
-            if (!roleManager.RoleExists("Admin"))
+            LOOP://If initialization fails, solve error then try again
+            try
             {
-                // adaugam rolul de administrator
-                var role = new IdentityRole();
-                role.Name = "Admin";
-                roleManager.Create(role);
-                // se adauga utilizatorul administrator
-                var score = new Score();
-                var user = new ApplicationUser
+                if (!roleManager.RoleExists("Admin"))
                 {
-                    UserName = "admin@admin.com",
-                    Email = "admin@admin.com",
-                    Score = score
-                };
+                    // adaugam rolul de administrator
+                    var role = new IdentityRole();
+                    role.Name = "Admin";
+                    roleManager.Create(role);
+                    // se adauga utilizatorul administrator
+                    var score = new Score();
+                    var user = new ApplicationUser
+                    {
+                        UserName = "admin@admin.com",
+                        Email = "admin@admin.com",
+                        Score = score
+                    };
 
-                var adminCreated = userManager.Create<ApplicationUser,string>(user, "Admin2020!");
-                if (adminCreated.Succeeded)
-                {
-                    userManager.AddToRole(user.Id, "Admin");
+                    var adminCreated = userManager.Create<ApplicationUser, string>(user, "Admin2020!");
+                    if (adminCreated.Succeeded)
+                    {
+                        userManager.AddToRole(user.Id, "Admin");
 
+                    }
                 }
+            }
+            catch (System.Data.SqlClient.SqlException e)
+            {
+                var dbName = e.Message.Split('\"')[1];
+                Server server = new Server(@"(localdb)\MSSQLLocalDB");
+                Microsoft.SqlServer.Management.Smo.Database database = new Microsoft.SqlServer.Management.Smo.Database(server, dbName);
+                database.Refresh();
+                server.KillAllProcesses(dbName);
+                database.DatabaseOptions.UserAccess = DatabaseUserAccess.Single;
+                //database.Alter(TerminationClause.RollbackTransactionsImmediately);
+                goto LOOP;
             }
             if (!roleManager.RoleExists("User"))
             {
@@ -63,13 +83,13 @@ namespace Chess20
                     Score = score
                 };
                 var userCreated = userManager.Create(user, "User");
-                if(userCreated.Succeeded)
+                if (userCreated.Succeeded)
                 {
                     userManager.AddToRole(user.Id, "User");
                 }
 
             }
-           
+
             //Seed(ctx);
         }
         //protected void Seed(ApplicationDbContext context)
