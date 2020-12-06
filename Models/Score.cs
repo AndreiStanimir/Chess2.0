@@ -8,14 +8,14 @@ namespace Chess20.Models
     public class Score
     {
         
-        [ForeignKey("User")]
+        //[ForeignKey("I")]
         public int ScoreId { get; set; }
         public int Elo { get; set; }
         public int Wins { get; set; }
         public int Draws { get; set; }
         public int Loses { get; set; }
 
-        public virtual User User { get; set; }
+        public virtual  ApplicationUser ApplicationUser { get; set; }
 
         public Score()
         {

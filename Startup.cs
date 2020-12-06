@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Owin;
+using System.Collections.Generic;
 
 [assembly: OwinStartupAttribute(typeof(Chess20.Startup))]
 namespace Chess20
@@ -13,15 +14,16 @@ namespace Chess20
         {
             ConfigureAuth(app);
             CreateAdminAndUserRoles();
+           
         }
 
         private void CreateAdminAndUserRoles()
         {
-            var ctx = new ApplicationDbContext();
+            var context = new ApplicationDbContext();
             var roleManager = new RoleManager<IdentityRole>(
-            new RoleStore<IdentityRole>(ctx));
+            new RoleStore<IdentityRole>(context));
             var userManager = new UserManager<ApplicationUser>(
-            new UserStore<ApplicationUser>(ctx));
+            new UserStore<ApplicationUser>(context));
             // adaugam rolurile pe care le poate avea un utilizator
             // din cadrul aplicatiei
             if (!roleManager.RoleExists("Admin"))
@@ -31,27 +33,96 @@ namespace Chess20
                 role.Name = "Admin";
                 roleManager.Create(role);
                 // se adauga utilizatorul administrator
-                var user = new ApplicationUser();
-                user.UserName = "admin@admin.com";
-                user.Email = "admin@admin.com";
-                var adminCreated = userManager.Create(user, "Admin2020!");
+                var score = new Score();
+                var user = new ApplicationUser
+                {
+                    UserName = "admin@admin.com",
+                    Email = "admin@admin.com",
+                    Score = score
+                };
+
+                var adminCreated = userManager.Create<ApplicationUser,string>(user, "Admin2020!");
                 if (adminCreated.Succeeded)
                 {
                     userManager.AddToRole(user.Id, "Admin");
+
                 }
             }
-            // ATENTIE !!! Pentru proiecte, pentru a adauga un rol nou trebuie sa adaugati secventa:
-            /*if (!roleManager.RoleExists("your_role_name"))
+            if (!roleManager.RoleExists("User"))
             {
-            // adaugati rolul specific aplicatiei voastre
-            var role = new IdentityRole();
-            role.Name = "your_role_name";
-            roleManager.Create(role);
-            // se adauga utilizatorul
-            var user = new ApplicationUser();
-            user.UserName = "your_user_email";
-            user.Email = "your_user_email";
-            }*/
+                var role = new IdentityRole();
+                role.Name = "User";
+                roleManager.Create(role);
+                // se adauga utilizatorul
+                var score = new Score();
+                context.Scores.Add(score);
+                var user = new ApplicationUser
+                {
+                    UserName = "player@chess.com",
+                    Email = "player@admin.com",
+                    Score = score
+                };
+                var userCreated = userManager.Create(user, "User");
+                if(userCreated.Succeeded)
+                {
+                    userManager.AddToRole(user.Id, "User");
+                }
+
+            }
+           
+            //Seed(ctx);
         }
+        //protected void Seed(ApplicationDbContext context)
+        //{
+
+        //    var score1 = new Score();
+        //    var score2 = new Score();
+        //    context.Scores.Add(score1);
+        //    context.Scores.Add(score2);
+        //    var idAdminRole = context.Roles.FirstOrDefault().Id;
+        //    var admin = (ApplicationUser)context.Users.Find(u => u.Roles.Any(r => r.RoleId == idAdminRole)).FirstOrDefault();
+        //    var player = new ApplicationUser();
+        //    //ApplicationUserManager userManager = new ApplicationUserManager();
+        //    //ApplicationUser player = new ApplicationUser
+        //    //{
+        //    //    UserName = "Andrei",
+        //    //    PhoneNumber = "+111111111111",
+        //    //    EmailConfirmed = true,
+        //    //    PhoneNumberConfirmed = true,
+        //    //    SecurityStamp = Guid.NewGuid().ToString("D"),
+
+        //    //    Email = "player@chess.com",
+        //    //    //Password = "123",
+        //    //    Name = "player",
+
+        //    //    //Role = Roles.ApplicationUser,
+        //    //    Score = score2
+        //    //};
+        //    List<ApplicationUser> users = new List<ApplicationUser>();
+        //    users.Add((ApplicationUser)admin);
+        //    users.Add((ApplicationUser)player);
+
+        //    context.UsersData.AddRange(users);
+        //    Gamemode gamemode = new Gamemode
+        //    {
+        //        //GamemodeId = 0,
+        //        Name = "Classic",
+        //        Time = 10 * 60,
+        //        Increment = 5
+        //    };
+        //    context.Gamemodes.Add(gamemode);
+
+        //    Game game = new Game
+        //    {
+        //        Moves = "e4e5",
+        //        Player1 = admin,
+        //        Player2 = player,
+        //        Winner = Winner.Draw
+        //    };
+        //    context.Games.Add(game);
+
+
+        //    context.SaveChanges(); ;
+        //}
     }
 }
