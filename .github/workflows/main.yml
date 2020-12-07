@@ -21,7 +21,7 @@ jobs:
       run: nuget restore Chess20.sln
  
     - name: Build and Publish Web App
-      run: msbuild  Chess20.sln.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
+      run: msbuild  Chess20.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
  
     - name: Upload Artifact
       uses: actions/upload-artifact@v1.0.0
