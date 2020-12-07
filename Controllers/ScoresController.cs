@@ -6,7 +6,6 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Chess20;
 using Chess20.Models;
 
 namespace Chess20.Controllers
@@ -18,7 +17,7 @@ namespace Chess20.Controllers
         // GET: Scores
         public ActionResult Index()
         {
-            var scores = db.Scores.Include(s => s.User);
+            var scores = db.Scores.Include(s => s.ApplicationUser);
             return View(scores.ToList());
         }
 
@@ -40,7 +39,7 @@ namespace Chess20.Controllers
         // GET: Scores/Create
         public ActionResult Create()
         {
-            ViewBag.ScoreId = new SelectList(db.UsersData, "UserId", "Name");
+            ViewBag.ScoreId = new SelectList(db.Users, "Id", "Email");
             return View();
         }
 
@@ -58,7 +57,7 @@ namespace Chess20.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ScoreId = new SelectList(db.UsersData, "UserId", "Name", score.ScoreId);
+            ViewBag.ScoreId = new SelectList(db.Users, "Id", "Email", score.ScoreId);
             return View(score);
         }
 
@@ -74,7 +73,7 @@ namespace Chess20.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ScoreId = new SelectList(db.UsersData, "UserId", "Name", score.ScoreId);
+            ViewBag.ScoreId = new SelectList(db.Users, "Id", "Email", score.ScoreId);
             return View(score);
         }
 
@@ -91,7 +90,7 @@ namespace Chess20.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ScoreId = new SelectList(db.UsersData, "UserId", "Name", score.ScoreId);
+            ViewBag.ScoreId = new SelectList(db.Users, "Id", "Email", score.ScoreId);
             return View(score);
         }
 
