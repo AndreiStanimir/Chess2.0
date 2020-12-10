@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Chess20.Common;
+using DataAnnotationsExtensions;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace Chess20.Models
 {
@@ -10,8 +8,16 @@ namespace Chess20.Models
     {
         [Key]
         public int GamemodeId { get; set; }
+
+        [MaxLength(30, ErrorMessage = "Name too long")]
         public string Name { get; set; }
+
+        [Min(0, ErrorMessage = "Time can't be negative")]
+        [Max(CONSTANTS.MAX_TIME, ErrorMessage = "Too much time")]
         public int Time { get; set; }
+
+        [Min(0, ErrorMessage = "Time can't be negative")]
+        [Max(CONSTANTS.MAX_INCREMENT, ErrorMessage = "Increment too high")]
         public int Increment { get; set; }
     }
 }
