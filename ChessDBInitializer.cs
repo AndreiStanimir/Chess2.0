@@ -26,7 +26,7 @@ namespace Chess20
 
             //ApplicationUserManager userManager = new ApplicationUserManager();
             ApplicationUser admin= new ApplicationUser
-            {
+            {   
                 UserName = "Andrei2",
                 PhoneNumber = "+111111111111",
                 EmailConfirmed = true,
