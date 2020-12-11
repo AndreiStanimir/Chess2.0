@@ -22,7 +22,7 @@ namespace Chess20.Models
         [Required]
         [Min(0, ErrorMessage = "Can't be negative")]
         public int Draws { get; set; }
-        
+
         [Required]
         [Min(0, ErrorMessage = "Can't be negative")]
         public int Loses { get; set; }
