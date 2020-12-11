@@ -1,4 +1,5 @@
 ﻿using Chess20.Common;
+using DataAnnotationsExtensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,20 +14,27 @@ namespace Chess20.Models
         Player1,
         Player2
     }
+
     public class Game
     {
-       
         [Required]
         public int GameId { get; set; }
-        //[Required]
+
         public virtual ApplicationUser Player1 { get; set; }
-        //[Required]
         public virtual ApplicationUser Player2 { get; set; }
-        //public User timer1 { get; set; }
-        //public User timer2 { get; set; }
+
+        [Required]
+        [Min(0)]
+        public TimeSpan Timer1 { get; set; }
+
+        [Min(0)]
+        public TimeSpan Timer2 { get; set; }
+
+        [Required]
         [GameValidator]
         public string Moves { get; set; }
-        [Range(0, (int)Winner.Player2,ErrorMessage =""), Display(Name = "Test Enum")]
+
+        [Range(0, (int)Winner.Player2, ErrorMessage = ""), Display(Name = "Test Enum")]
         public Winner Winner { get; set; }
     }
 }
