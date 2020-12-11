@@ -96,7 +96,7 @@
     <Compile Include="Common\TimeValidator.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApplicationUsersController.cs" />
-    <None Include="Controllers\GamesController.cs.old" />
+    <Compile Include="Controllers\GamemodesController.cs" />
     <Compile Include="Controllers\GamesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -157,11 +157,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Gamemodes\Create.cshtml" />
-    <Content Include="Views\Gamemodes\Delete.cshtml" />
-    <Content Include="Views\Gamemodes\Details.cshtml" />
-    <Content Include="Views\Gamemodes\Edit.cshtml" />
-    <Content Include="Views\Gamemodes\Index.cshtml" />
     <Content Include="Views\ApplicationUsers\Create.cshtml" />
     <Content Include="Views\ApplicationUsers\Delete.cshtml" />
     <Content Include="Views\ApplicationUsers\Details.cshtml" />
@@ -182,11 +177,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <Content Include="Views\Gamesold\Create.cshtml" />
-    <Content Include="Views\Gamesold\Delete.cshtml" />
-    <Content Include="Views\Gamesold\Details.cshtml" />
-    <Content Include="Views\Gamesold\Edit.cshtml" />
-    <Content Include="Views\Gamesold\Index.cshtml" />
+    <Content Include="Views\Gamemodes\Create.cshtml" />
+    <Content Include="Views\Gamemodes\Delete.cshtml" />
+    <Content Include="Views\Gamemodes\Details.cshtml" />
+    <Content Include="Views\Gamemodes\Edit.cshtml" />
+    <Content Include="Views\Gamemodes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Antlr">
