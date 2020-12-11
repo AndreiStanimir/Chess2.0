@@ -15,7 +15,6 @@ namespace Chess20
     {
         protected override void Seed(ApplicationDbContext context)
         {
-
             var score1 = new Score();
             var score2 = new Score();
             context.Scores.Add(score1);
@@ -25,8 +24,8 @@ namespace Chess20
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
             //ApplicationUserManager userManager = new ApplicationUserManager();
-            ApplicationUser admin= new ApplicationUser
-            {   
+            ApplicationUser admin = new ApplicationUser
+            {
                 UserName = "Andrei2",
                 PhoneNumber = "+111111111111",
                 EmailConfirmed = true,
@@ -35,7 +34,6 @@ namespace Chess20
 
                 Email = "admin2@chess.com",
                 //Password = "123",
-               
 
                 //Role = Roles.ApplicationUser,
                 Score = score1
@@ -70,7 +68,7 @@ namespace Chess20
             };
             context.Gamemodes.Add(gamemode);
 
-            Game game = new Game
+            Game game = new Game(gamemode)
             {
                 Moves = "e4e5",
                 Player1 = admin,

@@ -93,6 +93,7 @@
     <Compile Include="Common\GameValidator.cs" />
     <Compile Include="Common\Roles.cs" />
     <Compile Include="ChessDbContext.cs" />
+    <Compile Include="Common\TimeValidator.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApplicationUsersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
