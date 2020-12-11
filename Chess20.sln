@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chess20", "Chess20.csproj",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chess20.Tests", "..\Chess20.Tests\Chess20.Tests.csproj", "{831A4CC0-345C-4991-B3AC-B157585883F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUnitTests", "..\NUnitTests\NUnitTests.csproj", "{D787C4AE-AB6C-44CB-930A-EED128A2413D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NUnitTests", "..\NUnitTests\NUnitTests.csproj", "{D787C4AE-AB6C-44CB-930A-EED128A2413D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
