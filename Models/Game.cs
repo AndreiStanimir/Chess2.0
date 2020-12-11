@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Chess20.Common;
+using DataAnnotationsExtensions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -8,22 +11,46 @@ namespace Chess20.Models
 {
     public enum Winner
     {
-        None,
         Draw,
         Player1,
         Player2
     }
+
     public class Game
     {
-       
         [Required]
+        [Key]
         public int GameId { get; set; }
 
         public virtual ApplicationUser Player1 { get; set; }
         public virtual ApplicationUser Player2 { get; set; }
-        //public User timer1 { get; set; }
-        //public User timer2 { get; set; }
+
+        [Required]
+        //[ForeignKey("Gamemode")]
+        public virtual Gamemode Gamemode { get; set; }
+
+        [Required]
+        [TimeValidator]
+        [NotMapped]
+        public TimeSpan Timer1 { get; set; }
+
+        [Required]
+        [TimeValidator]
+        [NotMapped]
+        public TimeSpan Timer2 { get; set; }
+
+        [Required]
+        [GameValidator]
         public string Moves { get; set; }
+
+        [Range(0, (int)Winner.Player2, ErrorMessage = ""), Display(Name = "Test Enum")]
         public Winner Winner { get; set; }
+
+        public Game(Gamemode gamemode)
+        {
+            Gamemode = gamemode;
+            Timer1 = TimeSpan.FromSeconds(Gamemode.Time);
+            Timer2 = TimeSpan.FromSeconds(Gamemode.Time);
+        }
     }
 }

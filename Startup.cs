@@ -15,6 +15,7 @@ namespace Chess20
 {
     public partial class Startup
     {
+        
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
@@ -22,7 +23,7 @@ namespace Chess20
 
         }
 
-        private void CreateAdminAndUserRoles()
+        public void CreateAdminAndUserRoles()
         {
             var context = new ApplicationDbContext();
             var roleManager = new RoleManager<IdentityRole>(
@@ -57,11 +58,11 @@ namespace Chess20
                     }
                 }
             }
-            catch (System.Data.SqlClient.SqlException e)
+            catch (SqlException e)
             {
                 var dbName = e.Message.Split('\"')[1];
                 Server server = new Server(@"(localdb)\MSSQLLocalDB");
-                Microsoft.SqlServer.Management.Smo.Database database = new Microsoft.SqlServer.Management.Smo.Database(server, dbName);
+                var database = new Microsoft.SqlServer.Management.Smo.Database(server, dbName);
                 database.Refresh();
                 server.KillAllProcesses(dbName);
                 database.DatabaseOptions.UserAccess = DatabaseUserAccess.Single;
@@ -70,8 +71,10 @@ namespace Chess20
             }
             if (!roleManager.RoleExists("User"))
             {
-                var role = new IdentityRole();
-                role.Name = "User";
+                var role = new IdentityRole
+                {
+                    Name = "User"
+                };
                 roleManager.Create(role);
                 // se adauga utilizatorul
                 var score = new Score();

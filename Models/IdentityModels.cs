@@ -12,6 +12,7 @@ namespace Chess20.Models
     {
         [Required]
         public virtual Score Score { get; set; }
+
         public ICollection<Game> Games { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
