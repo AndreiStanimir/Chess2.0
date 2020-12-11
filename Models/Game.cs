@@ -18,9 +18,9 @@ namespace Chess20.Models
        
         [Required]
         public int GameId { get; set; }
-        [Required]
+        //[Required]
         public virtual ApplicationUser Player1 { get; set; }
-        [Required]
+        //[Required]
         public virtual ApplicationUser Player2 { get; set; }
         //public User timer1 { get; set; }
         //public User timer2 { get; set; }
