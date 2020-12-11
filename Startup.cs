@@ -15,6 +15,7 @@ namespace Chess20
 {
     public partial class Startup
     {
+        
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
@@ -22,7 +23,7 @@ namespace Chess20
 
         }
 
-        private void CreateAdminAndUserRoles()
+        public void CreateAdminAndUserRoles()
         {
             var context = new ApplicationDbContext();
             var roleManager = new RoleManager<IdentityRole>(
