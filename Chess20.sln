@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chess20", "Chess20.csproj", "{1DA8E34D-46BC-4164-A835-802755FD9ACC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chess20", "Chess20.csproj", "{7C796B6B-86B5-4C57-ADAA-12CF1FECDA71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chess20.Tests", "..\Chess20.Tests\Chess20.Tests.csproj", "{831A4CC0-345C-4991-B3AC-B157585883F3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NUnitTests", "..\NUnitTests\NUnitTests.csproj", "{D787C4AE-AB6C-44CB-930A-EED128A2413D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1DA8E34D-46BC-4164-A835-802755FD9ACC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1DA8E34D-46BC-4164-A835-802755FD9ACC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1DA8E34D-46BC-4164-A835-802755FD9ACC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1DA8E34D-46BC-4164-A835-802755FD9ACC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C796B6B-86B5-4C57-ADAA-12CF1FECDA71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C796B6B-86B5-4C57-ADAA-12CF1FECDA71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C796B6B-86B5-4C57-ADAA-12CF1FECDA71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C796B6B-86B5-4C57-ADAA-12CF1FECDA71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{831A4CC0-345C-4991-B3AC-B157585883F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{831A4CC0-345C-4991-B3AC-B157585883F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{831A4CC0-345C-4991-B3AC-B157585883F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{831A4CC0-345C-4991-B3AC-B157585883F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D787C4AE-AB6C-44CB-930A-EED128A2413D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D787C4AE-AB6C-44CB-930A-EED128A2413D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D787C4AE-AB6C-44CB-930A-EED128A2413D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D787C4AE-AB6C-44CB-930A-EED128A2413D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
