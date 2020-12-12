@@ -11,16 +11,15 @@ using System.Data.Entity;
 using Microsoft.SqlServer.Management.Smo;
 
 [assembly: OwinStartupAttribute(typeof(Chess20.Startup))]
+
 namespace Chess20
 {
     public partial class Startup
     {
-        
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
             CreateAdminAndUserRoles();
-
         }
 
         public void CreateAdminAndUserRoles()
@@ -54,20 +53,24 @@ namespace Chess20
                     if (adminCreated.Succeeded)
                     {
                         userManager.AddToRole(user.Id, "Admin");
-
                     }
                 }
             }
             catch (SqlException e)
             {
-                var dbName = e.Message.Split('\"')[1];
-                Server server = new Server(@"(localdb)\MSSQLLocalDB");
-                var database = new Microsoft.SqlServer.Management.Smo.Database(server, dbName);
-                database.Refresh();
-                server.KillAllProcesses(dbName);
-                database.DatabaseOptions.UserAccess = DatabaseUserAccess.Single;
-                //database.Alter(TerminationClause.RollbackTransactionsImmediately);
-                goto LOOP;
+                if (e.ErrorCode == -2146232060) // nice
+                {
+                    var dbName = e.Message.Split('\"')[1];
+                    Server server = new Server(@"(localdb)\MSSQLLocalDB");
+                    var database = new Microsoft.SqlServer.Management.Smo.Database(server, dbName);
+                    database.Refresh();
+                    server.KillAllProcesses(dbName);
+                    database.DatabaseOptions.UserAccess = DatabaseUserAccess.Single;
+                    //database.Alter(TerminationClause.RollbackTransactionsImmediately);
+                    goto LOOP;
+                }
+                else
+                    throw;
             }
             if (!roleManager.RoleExists("User"))
             {
@@ -90,14 +93,13 @@ namespace Chess20
                 {
                     userManager.AddToRole(user.Id, "User");
                 }
-
             }
 
             //Seed(ctx);
         }
+
         //protected void Seed(ApplicationDbContext context)
         //{
-
         //    var score1 = new Score();
         //    var score2 = new Score();
         //    context.Scores.Add(score1);
@@ -143,7 +145,6 @@ namespace Chess20
         //        Winner = Winner.Draw
         //    };
         //    context.Games.Add(game);
-
 
         //    context.SaveChanges(); ;
         //}
