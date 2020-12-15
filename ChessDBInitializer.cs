@@ -8,6 +8,7 @@ using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
+using static Chess20.Factories.UserFactory;
 
 namespace Chess20
 {
@@ -24,34 +25,10 @@ namespace Chess20
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
             //ApplicationUserManager userManager = new ApplicationUserManager();
-            ApplicationUser admin = new ApplicationUser
-            {
-                UserName = "Andrei2",
-                PhoneNumber = "+111111111111",
-                EmailConfirmed = true,
-                PhoneNumberConfirmed = true,
-                SecurityStamp = Guid.NewGuid().ToString("D"),
+            ApplicationUser admin = GetAdmin();
 
-                Email = "admin2@chess.com",
-                //Password = "123",
 
-                //Role = Roles.ApplicationUser,
-                Score = score1
-            };
-            ApplicationUser player = new ApplicationUser
-            {
-                UserName = "Andrei1",
-                PhoneNumber = "+111111111111",
-                EmailConfirmed = true,
-                PhoneNumberConfirmed = true,
-                SecurityStamp = Guid.NewGuid().ToString("D"),
-
-                Email = "player@chess.com",
-                //Password = "123",
-
-                //Role = Roles.ApplicationUser,
-                Score = score2
-            };
+            ApplicationUser player = GetPlayer();
             userManager.Create(player);
             userManager.Create(admin);
             //List<ApplicationUser> users = new List<ApplicationUser>();
