@@ -118,6 +118,7 @@
     <Content Include="chessboardjs\css\chessboard-1.0.0.min.css" />
     <Content Include="chessboardjs\js\chessboard-1.0.0.js" />
     <Content Include="chessboardjs\js\chessboard-1.0.0.min.js" />
+    <Content Include="chessjs\chess.js" />
     <Content Include="Content\Images\chesspieces\wikipedia\bB.png" />
     <Content Include="Content\Images\chesspieces\wikipedia\bK.png" />
     <Content Include="Content\Images\chesspieces\wikipedia\bN.png" />
@@ -458,6 +459,9 @@
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Npm">
+      <Version>3.5.2</Version>
     </PackageReference>
     <PackageReference Include="NUnit">
       <Version>3.12.0</Version>

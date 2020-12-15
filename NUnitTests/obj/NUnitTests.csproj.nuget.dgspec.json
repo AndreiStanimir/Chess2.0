@@ -358,6 +358,10 @@
               "target": "Package",
               "version": "[12.0.3, )"
             },
+            "Npm": {
+              "target": "Package",
+              "version": "[3.5.2, )"
+            },
             "Owin": {
               "target": "Package",
               "version": "[1.0.0, )"

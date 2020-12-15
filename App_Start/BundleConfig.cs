@@ -25,7 +25,8 @@ namespace Chess20
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/chessboardjs/css/chessboard-1.0.0.css"));
+                      "~/chessboardjs/css/chessboard-1.0.0.css"
+                      ));
             //bundles.Add(new StyleBundle("~/Content/css").Include(
             //    "~/chessboardjs/css/chessboard-1.0.0.css",
             //          new CssRewriteUrlTransform()));
@@ -35,7 +36,9 @@ namespace Chess20
                 //"~/Scripts/jquery.validate*",
                 //"~/Scripts/modernizr-*",
                 //"~/Scripts/bootstrap.js",
-                "~/chessboardjs/js/chessboard-1.0.0.js"));
+                "~/chessboardjs/js/chessboard-1.0.0.js",
+                "~/chessjs/chess.js"));
+
 
         }
     }
