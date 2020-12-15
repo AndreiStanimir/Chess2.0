@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Andrei\\source\\repos\\NUnitTests\\NUnitTests.csproj": {}
+    "C:\\Users\\Andrei\\Documents\\GitHub\\Chess2.0\\NUnitTests\\NUnitTests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Andrei\\source\\repos\\Chess20\\Chess20.csproj": {
+    "C:\\Users\\Andrei\\Documents\\GitHub\\Chess2.0\\Chess20.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Andrei\\source\\repos\\Chess20\\Chess20.csproj",
+        "projectUniqueName": "C:\\Users\\Andrei\\Documents\\GitHub\\Chess2.0\\Chess20.csproj",
         "projectName": "Chess20",
-        "projectPath": "C:\\Users\\Andrei\\source\\repos\\Chess20\\Chess20.csproj",
+        "projectPath": "C:\\Users\\Andrei\\Documents\\GitHub\\Chess2.0\\Chess20.csproj",
         "packagesPath": "C:\\Users\\Andrei\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Andrei\\source\\repos\\Chess20\\obj\\",
+        "outputPath": "C:\\Users\\Andrei\\Documents\\GitHub\\Chess2.0\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "configFilePaths": [
@@ -358,6 +358,10 @@
               "target": "Package",
               "version": "[12.0.3, )"
             },
+            "Npm": {
+              "target": "Package",
+              "version": "[3.5.2, )"
+            },
             "Owin": {
               "target": "Package",
               "version": "[1.0.0, )"
@@ -490,14 +494,14 @@
         }
       }
     },
-    "C:\\Users\\Andrei\\source\\repos\\NUnitTests\\NUnitTests.csproj": {
+    "C:\\Users\\Andrei\\Documents\\GitHub\\Chess2.0\\NUnitTests\\NUnitTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Andrei\\source\\repos\\NUnitTests\\NUnitTests.csproj",
+        "projectUniqueName": "C:\\Users\\Andrei\\Documents\\GitHub\\Chess2.0\\NUnitTests\\NUnitTests.csproj",
         "projectName": "NUnitTests",
-        "projectPath": "C:\\Users\\Andrei\\source\\repos\\NUnitTests\\NUnitTests.csproj",
+        "projectPath": "C:\\Users\\Andrei\\Documents\\GitHub\\Chess2.0\\NUnitTests\\NUnitTests.csproj",
         "packagesPath": "C:\\Users\\Andrei\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Andrei\\source\\repos\\NUnitTests\\obj\\",
+        "outputPath": "C:\\Users\\Andrei\\Documents\\GitHub\\Chess2.0\\NUnitTests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Andrei\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -514,8 +518,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\Andrei\\source\\repos\\Chess20\\Chess20.csproj": {
-                "projectPath": "C:\\Users\\Andrei\\source\\repos\\Chess20\\Chess20.csproj"
+              "C:\\Users\\Andrei\\Documents\\GitHub\\Chess2.0\\Chess20.csproj": {
+                "projectPath": "C:\\Users\\Andrei\\Documents\\GitHub\\Chess2.0\\Chess20.csproj"
               }
             }
           }
@@ -530,6 +534,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "Microsoft.AspNet.Mvc": {
+              "target": "Package",
+              "version": "[5.2.7, )"
+            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[16.5.0, )"
@@ -561,12 +569,18 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.1.10, 3.1.10]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
