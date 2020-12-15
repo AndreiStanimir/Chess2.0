@@ -4,11 +4,8 @@ using NUnit.Framework;
 using Owin;
 using System;
 
-using Chess20;
-
 using Chess20.Controllers;
 
-using System;
 
 using System.Collections.Generic;
 using System.Linq;

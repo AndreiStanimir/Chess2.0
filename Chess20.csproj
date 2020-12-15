@@ -100,6 +100,7 @@
     <Compile Include="Controllers\GamesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PlayChessController.cs" />
     <Compile Include="Controllers\ScoresController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -113,6 +114,22 @@
     <Compile Include="Models\Score.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Content Include="chessboardjs\css\chessboard-1.0.0.css" />
+    <Content Include="chessboardjs\css\chessboard-1.0.0.min.css" />
+    <Content Include="chessboardjs\js\chessboard-1.0.0.js" />
+    <Content Include="chessboardjs\js\chessboard-1.0.0.min.js" />
+    <Content Include="Content\Images\chesspieces\wikipedia\bB.png" />
+    <Content Include="Content\Images\chesspieces\wikipedia\bK.png" />
+    <Content Include="Content\Images\chesspieces\wikipedia\bN.png" />
+    <Content Include="Content\Images\chesspieces\wikipedia\bP.png" />
+    <Content Include="Content\Images\chesspieces\wikipedia\bQ.png" />
+    <Content Include="Content\Images\chesspieces\wikipedia\bR.png" />
+    <Content Include="Content\Images\chesspieces\wikipedia\wB.png" />
+    <Content Include="Content\Images\chesspieces\wikipedia\wK.png" />
+    <Content Include="Content\Images\chesspieces\wikipedia\wN.png" />
+    <Content Include="Content\Images\chesspieces\wikipedia\wP.png" />
+    <Content Include="Content\Images\chesspieces\wikipedia\wQ.png" />
+    <Content Include="Content\Images\chesspieces\wikipedia\wR.png" />
     <Content Include="Views\Games\Create.cshtml" />
     <Content Include="Views\Games\Delete.cshtml" />
     <Content Include="Views\Games\Details.cshtml" />
@@ -170,6 +187,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Content\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
@@ -182,7 +200,11 @@
     <Content Include="Views\Gamemodes\Details.cshtml" />
     <Content Include="Views\Gamemodes\Edit.cshtml" />
     <Content Include="Views\Gamemodes\Index.cshtml" />
-    <Content Include="Views\Play\PlayChess.cshtml" />
+    <Content Include="Views\PlayChess\Index.cshtml" />
+    <Content Include="chessboardjs\CHANGELOG.md" />
+    <Content Include="chessboardjs\LICENSE.md" />
+    <Content Include="chessboardjs\package.json" />
+    <Content Include="chessboardjs\README.md" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Antlr">

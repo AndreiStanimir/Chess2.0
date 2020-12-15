@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<div id="board" style="width: 400px"></div>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/scripts")
+    <script >
+        $(document).ready(function () {
+            console.log('start script');
+            var board = ChessBoard('board', 'start');
+            
+        });
+    </script>
+}
+
