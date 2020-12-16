@@ -9,6 +9,7 @@ namespace Chess20.Controllers
     public class PlayChessController : Controller
     {
         // GET: PlayChess
+
         public ActionResult Index()
         {
             return View();

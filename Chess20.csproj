@@ -96,6 +96,7 @@
     <Compile Include="Common\TimeValidator.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApplicationUsersController.cs" />
+    <Compile Include="Controllers\FormattedDbEntityValidationException.cs" />
     <Compile Include="Controllers\GamemodesController.cs" />
     <Compile Include="Controllers\GamesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

@@ -21,13 +21,25 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     @*<li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+        <li>@Html.ActionLink("About", "About", "Home")</li>
+        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
                     <li>@Html.ActionLink("Play", "", "PlayChess")</li>
-                    <li>@Html.ActionLink("Users", "", "ApplicationUsers")</li>
-                    <li>@Html.ActionLink("Gamemodes", "", "Gamemodes")</li>
-                    <li>@Html.ActionLink("Games", "", "Games")</li>
-                    <li>@Html.ActionLink("Scores", "", "Scores")</li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>Link to show only to logged users</li>
+                        if (User.IsInRole("Admin"))
+                        {
+                            <li>@Html.ActionLink("Users", "", "ApplicationUsers")</li>
+                            <li>@Html.ActionLink("Gamemodes", "", "Gamemodes")</li>
+                            <li>@Html.ActionLink("Games", "", "Games")</li>
+                        }
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Scores", "", "Scores")</li>
+                    }
+
+                    @*<li>@Html.ActionLink("Scores", "", "Scores")</li>*@
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

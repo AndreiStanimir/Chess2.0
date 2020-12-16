@@ -10,11 +10,13 @@ using Chess20.Models;
 
 namespace Chess20.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ScoresController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Scores
+        [AllowAnonymous]
         public ActionResult Index()
         {
             var scores = db.Scores.Include(s => s.ApplicationUser);
@@ -22,6 +24,7 @@ namespace Chess20.Controllers
         }
 
         // GET: Scores/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)

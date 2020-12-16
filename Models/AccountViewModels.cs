@@ -31,6 +31,7 @@ namespace Chess20.Models
         [Required]
         [Display(Name = "Code")]
         public string Code { get; set; }
+
         public string ReturnUrl { get; set; }
 
         [Display(Name = "Remember this browser?")]
@@ -49,9 +50,8 @@ namespace Chess20.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "UserName")]
+        public string UserName{ get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -64,6 +64,10 @@ namespace Chess20.Models
 
     public class RegisterViewModel
     {
+        [Required]
+        [Display(Name = "Name")]
+        public string Name { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

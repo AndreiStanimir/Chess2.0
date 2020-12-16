@@ -10,6 +10,7 @@ using Chess20.Models;
 
 namespace Chess20.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class GamesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
