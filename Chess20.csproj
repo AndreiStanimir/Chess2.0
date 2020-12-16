@@ -89,6 +89,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="ChessDBInitializer.cs" />
+    <Compile Include="Common\Color.cs" />
     <Compile Include="Common\CONSTANTS.cs" />
     <Compile Include="Common\GameValidator.cs" />
     <Compile Include="Common\Roles.cs" />
@@ -108,6 +109,19 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\Chess\Board.cs" />
+    <Compile Include="Models\Chess\Game.cs" />
+    <Compile Include="Models\Chess\IPiece.cs" />
+    <Compile Include="Models\Chess\Move.cs" />
+    <Compile Include="Models\Chess\Piece.cs" />
+    <Compile Include="Models\Chess\Pieces\Bishop.cs" />
+    <Compile Include="Models\Chess\Pieces\King.cs" />
+    <Compile Include="Models\Chess\Pieces\Knight.cs" />
+    <Compile Include="Models\Chess\Pieces\Pawn.cs" />
+    <Compile Include="Models\Chess\Position.cs" />
+    <Compile Include="Models\Chess\Pieces\Queen.cs" />
+    <Compile Include="Models\Chess\Pieces\Rook.cs" />
+    <Compile Include="Models\Chess\Tile.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Gamemode.cs" />
     <Compile Include="Models\IdentityModels.cs" />
