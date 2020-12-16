@@ -5,10 +5,12 @@ using System.Web;
 
 namespace Chess20.Common
 {
-    public class CONSTANTS
+    public static class CONSTANTS
     {
         public const int MAX_TIME = 10000;
         public const int MAX_INCREMENT = 60;
+        public const int MAX_X = 8;
+        public const int MAX_Y = 8;
 
     }
 }

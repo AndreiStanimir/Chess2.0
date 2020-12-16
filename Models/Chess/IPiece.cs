@@ -10,10 +10,10 @@ namespace Chess20.Models.Chess
 {
     interface IPiece
     {
-        Color Color { get; }
-        char Symbol { get; }
-        Position Position { get; }
+        public Color Color { get; }
+        public char Symbol { get; }
+        public Position Position { get; }
 
-        bool Move(Position to);
+        public bool Move(Position to);
     }
 }
