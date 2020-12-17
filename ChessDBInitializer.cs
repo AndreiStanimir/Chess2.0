@@ -1,13 +1,8 @@
-﻿using Chess20.Common;
-using Chess20.Models;
+﻿using Chess20.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
-using System.Linq;
-using System.Web;
 using static Chess20.Factories.UserFactory;
 
 namespace Chess20
@@ -26,7 +21,6 @@ namespace Chess20
 
             //ApplicationUserManager userManager = new ApplicationUserManager();
             ApplicationUser admin = GetAdmin();
-
 
             ApplicationUser player = GetPlayer();
             userManager.Create(player);

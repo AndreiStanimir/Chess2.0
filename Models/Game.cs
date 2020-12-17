@@ -1,11 +1,6 @@
 ﻿using Chess20.Common;
-using DataAnnotationsExtensions;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 
 namespace Chess20.Models
 {

@@ -1,19 +1,11 @@
 using Chess20;
+using Chess20.Controllers;
+using Chess20.Factories;
+using Chess20.Models;
 using Moq;
 using NUnit.Framework;
 using Owin;
-using System;
-
-using Chess20.Controllers;
-
-
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web;
 using System.Web.Mvc;
-using Chess20.Models;
-using Chess20.Factories;
 
 namespace NUnitTests
 {
@@ -33,7 +25,6 @@ namespace NUnitTests
             return new Startup();
         }
 
-
         public void Configuration_StateUnderTest_ExpectedBehavior()
         {
             // Arrange
@@ -47,7 +38,6 @@ namespace NUnitTests
             Assert.Fail();
             this.mockRepository.VerifyAll();
         }
-
 
         public void CreateAdminAndUserRoles_StateUnderTest_ExpectedBehavior()
         {
@@ -68,13 +58,11 @@ namespace NUnitTests
             GamesController controller = new GamesController();
             var result = controller.Details(1) as ViewResult;
             Assert.AreEqual("Details", result.ViewName);
-
         }
 
         [Test]
         public void DoesChangingGamemodeModifyTimesProperly()
         {
-
             const int timeBullet = 60;
             const int incrementBullet = 1;
             Gamemode gamemodeBullet = new Gamemode
@@ -107,7 +95,6 @@ namespace NUnitTests
 
             game.Gamemode = gamemodeBlitz;
             Assert.AreEqual(timeBlitz, game.Timer1.TotalSeconds);
-
         }
     }
 }
