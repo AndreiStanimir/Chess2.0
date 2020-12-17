@@ -1,5 +1,6 @@
 ﻿using Chess20.Common;
 using Chess20.Models.Chess.Pieces;
+using System.Collections.Generic;
 
 namespace Chess20.Models.Chess
 {
@@ -7,7 +8,7 @@ namespace Chess20.Models.Chess
     {
         public Color Color { get; }
 
-        public char Symbol => throw new System.NotImplementedException();
+        public char Symbol { get; }
 
         public Position Position { get; set; }
 
@@ -16,9 +17,32 @@ namespace Chess20.Models.Chess
             throw new System.NotImplementedException();
         }
 
+        public override bool Equals(object obj)
+        {
+            return obj is Piece piece &&
+                   Color == piece.Color &&
+                   Symbol == piece.Symbol &&
+                   EqualityComparer<Position>.Default.Equals(Position, piece.Position);
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = 1569584699;
+            hashCode = hashCode * -1521134295 + Color.GetHashCode();
+            hashCode = hashCode * -1521134295 + Symbol.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<Position>.Default.GetHashCode(Position);
+            return hashCode;
+        }
+
         protected Piece(Color color)
         {
-            Color = color;
+            this.Color = color;
+        }
+
+        protected Piece(Color color, char symbol)
+        {
+            this.Color = color;
+            Symbol = symbol;
         }
     }
 }

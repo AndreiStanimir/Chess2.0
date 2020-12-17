@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Chess20.Common;
+﻿using Chess20.Common;
+
 namespace Chess20.Models.Chess.Pieces
 {
     public class Position
@@ -14,15 +11,24 @@ namespace Chess20.Models.Chess.Pieces
         {
             X = Y = -1;
         }
+
         public Position(int x, int y)
         {
             X = x;
             Y = y;
         }
-        bool IsInside()
+
+        private bool IsInside()
         {
             return X is >= 0 and < CONSTANTS.MAX_X &&
                    Y is >= 0 and < CONSTANTS.MAX_Y;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Position position &&
+                   X == position.X &&
+                   Y == position.Y;
         }
     }
 }

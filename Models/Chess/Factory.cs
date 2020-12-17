@@ -1,21 +1,19 @@
 ﻿using Chess20.Common;
 using Chess20.Models.Chess.Pieces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Chess20.Models.Chess
 {
-    public class Factory
+    public static class Factory
     {
         private const int MAX_X = 8;
-        public Game GetNewGame()
+
+        public static Game GetNewGame()
         {
             var game = new Game();
             return game;
         }
-        public Board GetNewBoard()
+
+        public static Board GetNewBoard()
         {
             const string startingPositionPieces = "rnbqkbnr";
             const string startingPositionPiecesWhite = "RNBQKBNR";
@@ -31,29 +29,92 @@ namespace Chess20.Models.Chess
 
             return board;
         }
-        public Pawn GetPawn(Color c)
+
+        public static Pawn GetPawn(Color c)
         {
             return new Pawn(c);
         }
-        public Piece GetPiece(char piece)
-        {
-            Dictionary<char, Piece> pieceDictionary = new Dictionary<char, Piece>
-            {
-                {'p',new Pawn(Color.Black)},
-                {'b',new Bishop(Color.Black)},
-                {'k',new King(Color.Black)},
-                {'n',new Knight(Color.Black)},
-                {'q',new Queen(Color.Black)},
-                {'r',new Rook(Color.Black)},
 
-                {'P',new Pawn(Color.White)},
-                {'B',new Bishop(Color.White)},
-                {'K',new King(Color.White)},
-                {'N',new Knight(Color.White)},
-                {'Q',new Queen(Color.White)},
-                {'R',new Rook(Color.White)},
-            };
-            return pieceDictionary[piece];
+        public static Piece GetPiece(char piece)
+        {
+            switch (piece)
+            {
+                case 'p':
+                    return new Pawn(Color.Black);
+
+                case 'b':
+                    return new Bishop(Color.Black);
+
+                case 'k':
+                    return new King(Color.Black);
+
+                case 'n':
+                    return new Knight(Color.Black);
+
+                case 'q':
+                    return new Queen(Color.Black);
+
+                case 'r':
+                    return new Rook(Color.Black);
+
+                case 'P':
+                    return new Pawn(Color.White);
+
+                case 'B':
+                    return new Bishop(Color.White);
+
+                case 'K':
+                    return new King(Color.White);
+
+                case 'N':
+                    return new Knight(Color.White);
+
+                case 'Q':
+                    return new Queen(Color.White);
+
+                case 'R':
+                    return new Rook(Color.White);
+            }
+            return null;
+        }
+
+        public static Board GetBoardFromFEN(string fen)
+        {
+            Board board = new();
+
+            var fen_split = fen.Split(' ');
+
+            var boardLines = fen_split[0].Split('/');
+            var sideToMove = fen_split[1];
+            var castling = fen_split[2];
+            var enpassantTargetSquare = fen_split[3];
+            var halfmovesCount = fen_split[4];
+            var fullmovesCount = fen_split[5];
+
+            for (int i = 0; i < 8; i++)
+            {
+                var indexPiece = 0;
+                for (int j = 0; j < boardLines[i].Length; j++)
+                {
+                    var c = boardLines[i][j];
+                    int number;
+                    bool isNum = int.TryParse(c.ToString(), out number);
+                    if (isNum)
+                    {
+                        for (; indexPiece < number; indexPiece++)
+                        {
+                            board.tiles[i, j].SetPiece();
+                        }
+                    }
+                    else
+                    {
+                        board.tiles[i, j].SetPiece(GetPiece(boardLines[i][j]), new Position(i, j));
+                        indexPiece++;
+                    }
+                }
+            }
+
+            return board;
         }
     }
 }

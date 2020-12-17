@@ -1,8 +1,4 @@
 ﻿using Chess20.Models.Chess.Pieces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Chess20.Models.Chess
 {
@@ -15,10 +11,35 @@ namespace Chess20.Models.Chess
         public Board()
         {
             tiles = new Tile[MAX_X, MAX_Y];
+            for (int i = 0; i < MAX_X; i++)
+            {
+                for (int j = 0; j < MAX_Y; j++)
+                {
+                    tiles[i, j] = new Tile();
+                }
+            }
         }
-        public void SetPiece(Position pos,Piece piece)
+
+        public void SetPiece(Position pos, Piece piece)
         {
-            tiles[pos.X, pos.Y].Piece = piece;
+            piece.Position = pos;
+            tiles[pos.X, pos.Y].SetPiece(piece, pos);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is not Board)
+                return false;
+            var tiles2 = ((Board)obj).tiles;
+            for (int i = 0; i < MAX_X; i++)
+            {
+                for (int j = 0; j < MAX_Y; j++)
+                {
+                    if (tiles2[i, j] != tiles[i, j])
+                        return false;
+                }
+            }
+            return true;
         }
     }
 }
