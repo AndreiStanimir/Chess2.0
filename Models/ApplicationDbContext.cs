@@ -20,16 +20,19 @@ namespace Chess20.Models
         {
             return new ApplicationDbContext();
         }
-//        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-//        {
-//            //base.OnModelCreating(modelBuilder);
-//            modelBuilder.Entity<TUserRole>()
-//            .HasKey(r => new {r.UserId, r.RoleId})
-//            .ToTable("AspNetUserRoles");
 
-//modelBuilder.Entity<TUserLogin>()
-//            .HasKey(l => new {l.LoginProvider, l.ProviderKey, l.UserId})
-//            .ToTable("AspNetUserLogins");
-//        }
+
+        //public System.Data.Entity.DbSet<Chess20.Models.ApplicationUser> ApplicationUsers { get; set; }
+        //        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //        {
+        //            //base.OnModelCreating(modelBuilder);
+        //            modelBuilder.Entity<TUserRole>()
+        //            .HasKey(r => new {r.UserId, r.RoleId})
+        //            .ToTable("AspNetUserRoles");
+
+        //modelBuilder.Entity<TUserLogin>()
+        //            .HasKey(l => new {l.LoginProvider, l.ProviderKey, l.UserId})
+        //            .ToTable("AspNetUserLogins");
+        //        }
     }
 }

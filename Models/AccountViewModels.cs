@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Chess20.Common;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Chess20.Models
@@ -62,7 +63,7 @@ namespace Chess20.Models
         public bool RememberMe { get; set; }
     }
 
-    public class RegisterViewModel
+    public class RegisterUserViewModel
     {
         [Required]
         [Display(Name = "Name")]
@@ -83,6 +84,12 @@ namespace Chess20.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+    }
+    public class RegisterAdminViewModel : RegisterUserViewModel
+    {
+        [Required]
+        [Display(Name = "Role")]
+        public string Role{ get; set; }
     }
 
     public class ResetPasswordViewModel

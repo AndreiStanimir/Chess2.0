@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Chess20.Models;
 using System.Data.Entity.Validation;
+using Chess20.Common;
 
 namespace Chess20.Controllers
 {
@@ -148,16 +149,21 @@ namespace Chess20.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterUserViewModel model, string userRole="User")
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var user = new ApplicationUser { UserName = model.Name, Email = model.Email,Score=new Score()};
+                    var user = new ApplicationUser { 
+                        UserName = model.Name, 
+                        Email = model.Email,
+                        Score=new Score(),
+                        };
                     var result = await UserManager.CreateAsync(user, model.Password);
                     if (result.Succeeded)
                     {
+                        UserManager.AddToRole(user.Id, userRole);
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                         // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
@@ -181,7 +187,14 @@ namespace Chess20.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-
+        // POST: /Account/AdminRegister
+        [HttpPost]
+        [Authorize(Roles = Roles.Admin)]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AdminRegister(RegisterAdminViewModel model)
+        {
+            return await Register(model, model.Role);
+        }
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]

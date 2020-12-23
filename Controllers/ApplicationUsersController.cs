@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Chess20.Models;
 
 namespace Chess20.Controllers
@@ -15,9 +16,27 @@ namespace Chess20.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: ApplicationUsers
-        public ActionResult Index()
+        //public ActionResult Index()
+        //{
+        //   //var r = Roles.GetRolesForUser();
+        //    return View(db.Users.ToList());
+        //}
+        // GET: ApplicationUsers/IndexByRole/Role
+        //[Route("ApplicationUsers/IndexByRole/{role}")]
+        public ActionResult IndexByRole(string id="User")
         {
-            return View(db.Users.ToList());
+            //TODO: add try catch
+            var roleFromDb = db.Roles.Where(r => r.Name == id).FirstOrDefault();
+            if(roleFromDb ==null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var roleId = roleFromDb.Id;
+            List<ApplicationUser> filteredUsers = db.Users
+                .Where(u => u.Roles
+                .Any(r => r.RoleId==roleId))
+                .ToList();
+            return View(filteredUsers);
         }
 
         // GET: ApplicationUsers/Details/5
@@ -78,7 +97,7 @@ namespace Chess20.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,Name")] ApplicationUser applicationUser)
+        public ActionResult Edit([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,Name,Roles")] ApplicationUser applicationUser)
         {
             if (ModelState.IsValid)
             {
