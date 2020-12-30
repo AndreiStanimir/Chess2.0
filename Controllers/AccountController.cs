@@ -189,7 +189,7 @@ namespace Chess20.Controllers
         }
         // POST: /Account/AdminRegister
         [HttpPost]
-        [Authorize(Roles = Roles.Admin)]
+        [Authorize(Roles = RoleName.Admin)]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> AdminRegister(RegisterAdminViewModel model)
         {

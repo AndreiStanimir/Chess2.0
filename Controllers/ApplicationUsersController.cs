@@ -97,11 +97,16 @@ namespace Chess20.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,Name,Roles")] ApplicationUser applicationUser)
+        public ActionResult Edit([Bind(Exclude = "Score", Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,Name,Roles")] ApplicationUser applicationUser)
+        //public ActionResult Edit(ApplicationUser applicationUser)
+
         {
+            //applicationUser.Score = db.Scores.Where(s => s.ApplicationUser == applicationUser).FirstOrDefault();
+            
             if (ModelState.IsValid)
             {
                 db.Entry(applicationUser).State = EntityState.Modified;
+                db.Entry(applicationUser).Property("Score").IsModified = false;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

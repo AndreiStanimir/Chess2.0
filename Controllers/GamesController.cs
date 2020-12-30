@@ -6,11 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Chess20.Common;
 using Chess20.Models;
 
 namespace Chess20.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = RoleName.Admin)]
     public class GamesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
