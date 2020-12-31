@@ -95,7 +95,7 @@ namespace Chess20.Controllers
             {
                 return HttpNotFound();
             }
-            string role = "User";// db.Roles.Where(r => r. == id).FirstOrDefault();
+            string role = userManager.GetRoles(id).FirstOrDefault();
 
 
             EditUserViewModel user = new EditUserViewModel()
