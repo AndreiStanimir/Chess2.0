@@ -120,4 +120,22 @@ namespace Chess20.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
+
+    public class EditUserViewModel
+    {
+        [Required]
+        public string Id { get; set; }
+        [Required]
+        [Display(Name = "UserName")]
+        public string UserName { get; set; }
+
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
+        [Display(Name = "Role")]
+        public string Role { get; set; }
+
+    }
 }

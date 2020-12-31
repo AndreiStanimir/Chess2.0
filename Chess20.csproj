@@ -91,7 +91,7 @@
     <Compile Include="ChessDBInitializer.cs" />
     <Compile Include="Common\CONSTANTS.cs" />
     <Compile Include="Common\GameValidator.cs" />
-    <Compile Include="Common\Roles.cs" />
+    <Compile Include="Common\RoleName.cs" />
     <Compile Include="Common\TimeValidator.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApplicationUsersController.cs" />
@@ -183,7 +183,7 @@
     <Content Include="Views\ApplicationUsers\Index.cshtml" />
     <Content Include="Views\Scores\Create.cshtml" />
     <Content Include="Views\Scores\Delete.cshtml" />
-    <Content Include="Views\Scores\Details.cshtml" />
+    <Content Include="Views\Scores\_Details.cshtml" />
     <Content Include="Views\Scores\Edit.cshtml" />
     <Content Include="Views\Scores\Index.cshtml" />
   </ItemGroup>

@@ -20,8 +20,7 @@ namespace Chess20.Models
         {
             return new ApplicationDbContext();
         }
-
-
+     
         //public System.Data.Entity.DbSet<Chess20.Models.ApplicationUser> ApplicationUsers { get; set; }
         //        protected override void OnModelCreating(DbModelBuilder modelBuilder)
         //        {

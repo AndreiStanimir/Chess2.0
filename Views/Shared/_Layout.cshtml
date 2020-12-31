@@ -26,7 +26,6 @@
                     <li>@Html.ActionLink("Play", "", "PlayChess")</li>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li>Link to show only to logged users</li>
                         if (User.IsInRole("Admin"))
                         {
                             <li>@Html.ActionLink("Users", "", "ApplicationUsers")</li>
@@ -34,12 +33,9 @@
                             <li>@Html.ActionLink("Games", "", "Games")</li>
                         }
                     }
-                    else
-                    {
-                        <li>@Html.ActionLink("Scores", "", "Scores")</li>
-                    }
+                    
 
-                    @*<li>@Html.ActionLink("Scores", "", "Scores")</li>*@
+                    <li>@Html.ActionLink("Scores", "", "Scores")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

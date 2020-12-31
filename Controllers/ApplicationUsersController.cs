@@ -8,33 +8,39 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using Chess20.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Chess20.Controllers
 {
     public class ApplicationUsersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
-        // GET: ApplicationUsers
-        //public ActionResult Index()
-        //{
-        //   //var r = Roles.GetRolesForUser();
-        //    return View(db.Users.ToList());
-        //}
+        private UserManager<ApplicationUser> userManager;
+        //GET: ApplicationUsers
+        public ApplicationUsersController()
+        {
+             userManager= new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+        }
+        public ActionResult Index()
+        {
+            //var r = Roles.GetRolesForUser();
+            return View(db.Users.ToList());
+        }
         // GET: ApplicationUsers/IndexByRole/Role
         //[Route("ApplicationUsers/IndexByRole/{role}")]
-        public ActionResult IndexByRole(string id="User")
+        public ActionResult IndexByRole(string id = "User")
         {
             //TODO: add try catch
             var roleFromDb = db.Roles.Where(r => r.Name == id).FirstOrDefault();
-            if(roleFromDb ==null)
+            if (roleFromDb == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var roleId = roleFromDb.Id;
             List<ApplicationUser> filteredUsers = db.Users
                 .Where(u => u.Roles
-                .Any(r => r.RoleId==roleId))
+                .Any(r => r.RoleId == roleId))
                 .ToList();
             return View(filteredUsers);
         }
@@ -89,7 +95,17 @@ namespace Chess20.Controllers
             {
                 return HttpNotFound();
             }
-            return View(applicationUser);
+            string role = "User";// db.Roles.Where(r => r. == id).FirstOrDefault();
+
+
+            EditUserViewModel user = new EditUserViewModel()
+            {
+                Id=applicationUser.Id,
+                Email = applicationUser.Email,
+                UserName = applicationUser.UserName,
+                Role = role
+            };
+            return View(user);
         }
 
         // POST: ApplicationUsers/Edit/5
@@ -97,16 +113,23 @@ namespace Chess20.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Exclude = "Score", Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,Name,Roles")] ApplicationUser applicationUser)
+        //public ActionResult Edit([Bind(Exclude = "Score", Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,Name,Roles")] ApplicationUser applicationUser)
+        public ActionResult Edit(EditUserViewModel editUserViewModel)
         //public ActionResult Edit(ApplicationUser applicationUser)
 
         {
             //applicationUser.Score = db.Scores.Where(s => s.ApplicationUser == applicationUser).FirstOrDefault();
-            
+            var applicationUser = db.Users.Find(editUserViewModel.Id);
+            //TODO check null
             if (ModelState.IsValid)
             {
-                db.Entry(applicationUser).State = EntityState.Modified;
-                db.Entry(applicationUser).Property("Score").IsModified = false;
+                applicationUser.UserName = editUserViewModel.UserName;
+                applicationUser.Email = editUserViewModel.Email;
+                applicationUser.Score = applicationUser.Score;
+                //db.Entry(applicationUser).Property("Score").IsModified = false;
+                userManager.RemoveFromRoles(applicationUser.Id, userManager.GetRoles(applicationUser.Id).ToArray());
+                userManager.AddToRole(applicationUser.Id, editUserViewModel.Role);
+                //db.Entry(applicationUser).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

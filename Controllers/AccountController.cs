@@ -149,8 +149,10 @@ namespace Chess20.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterUserViewModel model, string userRole="User")
+        public async Task<ActionResult> Register(RegisterAdminViewModel model)
         {
+            if (model.Role == null)
+                model.Role = RoleName.User;
             if (ModelState.IsValid)
             {
                 try
@@ -163,7 +165,7 @@ namespace Chess20.Controllers
                     var result = await UserManager.CreateAsync(user, model.Password);
                     if (result.Succeeded)
                     {
-                        UserManager.AddToRole(user.Id, userRole);
+                        UserManager.AddToRole(user.Id, model.Role);
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                         // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
@@ -193,7 +195,7 @@ namespace Chess20.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> AdminRegister(RegisterAdminViewModel model)
         {
-            return await Register(model, model.Role);
+            return await Register(model);
         }
         //
         // GET: /Account/ConfirmEmail

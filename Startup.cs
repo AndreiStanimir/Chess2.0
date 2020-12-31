@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using Microsoft.SqlServer.Management;
 using System.Data.Entity;
 using Microsoft.SqlServer.Management.Smo;
+using Chess20.Common;
 
 [assembly: OwinStartupAttribute(typeof(Chess20.Startup))]
 
@@ -34,11 +35,11 @@ namespace Chess20
             LOOP://If initialization fails, solve error then try again
             try
             {
-                if (!roleManager.RoleExists("Admin"))
+                if (!roleManager.RoleExists(RoleName.Admin))
                 {
                     // adaugam rolul de administrator
                     var role = new IdentityRole();
-                    role.Name = "Admin";
+                    role.Name = RoleName.Admin;
                     roleManager.Create(role);
                     // se adauga utilizatorul administrator
                     var score = new Score();
@@ -49,11 +50,29 @@ namespace Chess20
                         Score = score
                     };
 
-                    var adminCreated = userManager.Create<ApplicationUser, string>(user, "Admin2020!");
+                    var adminCreated = userManager.Create<ApplicationUser, string>(user, "Premium2020!");
                     if (adminCreated.Succeeded)
                     {
                         userManager.AddToRole(user.Id, "Admin");
                     }
+                }
+                if (!roleManager.RoleExists(RoleName.Premium))
+                {
+                    var role = new IdentityRole();
+                    role.Name = RoleName.Premium;
+                    roleManager.Create(role);
+                    //var user = new ApplicationUser
+                    //{
+                    //    UserName = "premium",
+                    //    Email = "premium@admin.com",
+                    //    Score = new Score()
+                    //};
+
+                    //var premiumUserCreated = userManager.Create<ApplicationUser, string>(user, "Admin2020!");
+                    //if (premiumUserCreated.Succeeded)
+                    //{
+                    //    userManager.AddToRole(user.Id,RoleName.Premium);
+                    //}
                 }
             }
             catch (SqlException e)
