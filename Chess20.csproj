@@ -101,6 +101,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PlayChessController.cs" />
+    <Compile Include="Controllers\PuzzlesController.cs" />
     <Compile Include="Controllers\ScoresController.cs" />
     <Compile Include="Factories\UserFactory.cs" />
     <Compile Include="Global.asax.cs">
@@ -207,8 +208,8 @@
     <Content Include="chessboardjs\LICENSE.md" />
     <Content Include="chessboardjs\package.json" />
     <Content Include="chessboardjs\README.md" />
-    <Content Include="Views\Account\AdminRegister.cshtml" />
     <Content Include="Views\ApplicationUsers\IndexByRole.cshtml" />
+    <Content Include="Views\Puzzles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Antlr">

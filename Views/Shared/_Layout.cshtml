@@ -24,16 +24,31 @@
         <li>@Html.ActionLink("About", "About", "Home")</li>
         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
                     <li>@Html.ActionLink("Play", "", "PlayChess")</li>
-                    @if (User.Identity.IsAuthenticated)
+                    @*@if (User.Identity.IsAuthenticated)
                     {
                         if (User.IsInRole("Admin"))
-                        {
-                            <li>@Html.ActionLink("Users", "", "ApplicationUsers")</li>
+                        {*@
+                            @*<li>@Html.ActionLink("Users", "", "ApplicationUsers")</li>*@
+                            <li>
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    Users
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>@Html.ActionLink("All", "Index", "ApplicationUsers")</li>
+                                    <li>@Html.ActionLink("Basic", "IndexByRole/User", "ApplicationUsers")</li>
+                                    <li>@Html.ActionLink("Premium", "IndexByRole/Premium", "ApplicationUsers")</li>
+                                    <li>@Html.ActionLink("Admins", "IndexByRole/Admin", "ApplicationUsers")</li>
+
+                                </ul>
+                            </li>
+                           
                             <li>@Html.ActionLink("Gamemodes", "", "Gamemodes")</li>
                             <li>@Html.ActionLink("Games", "", "Games")</li>
-                        }
-                    }
-                    
+                            <li>@Html.ActionLink("Puzzles","","Puzzles")</li>
+                        @*}
+                    }*@
+
 
                     <li>@Html.ActionLink("Scores", "", "Scores")</li>
                 </ul>
