@@ -103,7 +103,8 @@ namespace Chess20.Controllers
                 Id=applicationUser.Id,
                 Email = applicationUser.Email,
                 UserName = applicationUser.UserName,
-                Role = role
+                Role = role,
+                Score=applicationUser.Score
             };
             return View(user);
         }
