@@ -10,7 +10,7 @@ using Chess20.Models;
 
 namespace Chess20.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;

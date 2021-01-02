@@ -14,7 +14,7 @@ using Chess20.Common;
 
 namespace Chess20.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;

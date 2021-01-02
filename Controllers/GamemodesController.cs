@@ -11,7 +11,7 @@ using Chess20.Models;
 
 namespace Chess20.Controllers
 {
-    [Authorize(Roles =RoleName.Admin)]
+    //[Authorize(Roles =RoleName.Admin)]
     public class GamemodesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
