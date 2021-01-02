@@ -11,6 +11,7 @@ namespace Chess20.Models
 {
     public enum Winner
     {
+        None,
         Draw,
         Player1,
         Player2
@@ -40,8 +41,8 @@ namespace Chess20.Models
             }
             set
             {
-                Timer1 = TimeSpan.FromSeconds(value.Time);
-                Timer2 = TimeSpan.FromSeconds(value.Time);
+                //Timer1 = TimeSpan.FromSeconds(value.Time);
+                //Timer2 = TimeSpan.FromSeconds(value.Time);
                 gamemode = value;
             }
         }
@@ -79,4 +80,5 @@ namespace Chess20.Models
         //    Timer2 = TimeSpan.FromSeconds(Gamemode.Time);
         //}
     }
+
 }

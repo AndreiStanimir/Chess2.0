@@ -110,6 +110,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Game.cs" />
+    <Compile Include="Models\GameCreateViewModel.cs" />
     <Compile Include="Models\Gamemode.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -210,6 +211,8 @@
     <Content Include="chessboardjs\README.md" />
     <Content Include="Views\ApplicationUsers\IndexByRole.cshtml" />
     <Content Include="Views\Puzzles\Index.cshtml" />
+    <Content Include="Views\Create2.cshtml" />
+    <Content Include="Views\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Antlr">

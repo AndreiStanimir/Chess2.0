@@ -36,12 +36,9 @@ namespace Chess20
             //users.Add((ApplicationUser)player);
             //context.UsersData.AddRange(users);
 
-            Gamemode gamemode = new Gamemode
+            Gamemode gamemode = new Gamemode(10 * 60,5)
             {
-                //GamemodeId = 0,
-                Name = "Classic",
-                Time = 10 * 60,
-                Increment = 5
+                
             };
             context.Gamemodes.Add(gamemode);
 

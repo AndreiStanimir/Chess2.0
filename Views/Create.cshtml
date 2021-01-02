@@ -6,38 +6,35 @@
 
 <h2>Create</h2>
 
-
-@using (Html.BeginForm())
+@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
-        <h4>Game</h4>
+        <h4>GameCreateViewModel</h4>
         <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.Label("Player1", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Player1Id, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(m => m.Player1Id, (IEnumerable<SelectListItem>)ViewBag.Users, new { @class = "form-control" })
-
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Player1Id, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Player1Id, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.Label("Player2", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Player2Id, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(m => m.Player2Id, (IEnumerable<SelectListItem>)ViewBag.Users, new { @class = "form-control" })
-
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Player2Id, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Player2Id, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.Label("Gamemode", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.GamemodeId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(m => m.GamemodeId, (IEnumerable<SelectListItem>)ViewBag.Gamemodes, new { @class = "form-control" })
-
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.GamemodeId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.GamemodeId, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -84,7 +81,3 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
