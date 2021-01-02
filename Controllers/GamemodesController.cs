@@ -52,7 +52,15 @@ namespace Chess20.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Gamemodes.Add(gamemode);
+                if (String.IsNullOrWhiteSpace(gamemode.Name))
+                {
+                    var newGamemode = new Gamemode(gamemode.Time, gamemode.Increment);
+                    db.Gamemodes.Add(newGamemode);
+                }
+                else
+                {
+                    db.Gamemodes.Add(gamemode);
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -84,6 +92,10 @@ namespace Chess20.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (String.IsNullOrWhiteSpace(gamemode.Name))
+                {
+                    gamemode.SetDefaultName(gamemode.Time, gamemode.Increment);
+                }
                 db.Entry(gamemode).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
