@@ -124,6 +124,7 @@ namespace Chess20.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Gamemode gamemode = db.Gamemodes.Find(id);
+            db.Games.RemoveRange(db.Games.Where(g => g.Gamemode.GamemodeId == gamemode.GamemodeId));
             db.Gamemodes.Remove(gamemode);
             db.SaveChanges();
             return RedirectToAction("Index");

@@ -73,12 +73,12 @@ namespace Chess20.Models
             //}
         }
 
-        //public Game(Gamemode gamemode)
-        //{
-        //    Gamemode = gamemode;
-        //    Timer1 = TimeSpan.FromSeconds(Gamemode.Time);
-        //    Timer2 = TimeSpan.FromSeconds(Gamemode.Time);
-        //}
+        public Game(Gamemode gamemode)
+        {
+            Gamemode = gamemode;
+            Timer1 = TimeSpan.FromSeconds(Gamemode.Time);
+            Timer2 = TimeSpan.FromSeconds(Gamemode.Time);
+        }
     }
 
 }

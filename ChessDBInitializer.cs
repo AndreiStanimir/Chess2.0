@@ -42,10 +42,10 @@ namespace Chess20
             };
             context.Gamemodes.Add(gamemode);
 
-            Game game = new Game()
+            Game game = new Game(gamemode)
             {
                 Moves = "e4e5",
-                Gamemode = gamemode,
+                
                 Player1 = admin,
                 Player2 = player,
                 Winner = Winner.Draw

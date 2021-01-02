@@ -26,15 +26,15 @@ namespace Chess20.Models
 
         public int GamemodeId { get; set; }
 
-        [Required]
-        [RegularExpression(@"((([0-1][0-9])|(2[0-3]))(:[0-5][0-9])(:[0-5][0-9])?)", ErrorMessage = "Time must be between 00:00:00 to 23:59:59")]
-        public TimeSpan Timer1 { get; set; }
+        //[Required]
+        //[RegularExpression(@"((([0-1][0-9])|(2[0-3]))(:[0-5][0-9])(:[0-5][0-9])?)", ErrorMessage = "Time must be between 00:00:00 to 23:59:59")]
+        //public TimeSpan Timer1 { get; set; }
 
-        [Required]
-        [RegularExpression(@"((([0-1][0-9])|(2[0-3]))(:[0-5][0-9])(:[0-5][0-9])?)", ErrorMessage = "Time must be between 00:00:00 to 23:59:59")]
+        //[Required]
+        //[RegularExpression(@"((([0-1][0-9])|(2[0-3]))(:[0-5][0-9])(:[0-5][0-9])?)", ErrorMessage = "Time must be between 00:00:00 to 23:59:59")]
 
-        //[NotMapped]
-        public TimeSpan Timer2 { get; set; }
+        ////[NotMapped]
+        //public TimeSpan Timer2 { get; set; }
 
         [Required]
 
