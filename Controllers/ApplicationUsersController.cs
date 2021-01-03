@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -20,7 +21,7 @@ namespace Chess20.Controllers
         //GET: ApplicationUsers
         public ApplicationUsersController()
         {
-             userManager= new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
         }
         public ActionResult Index()
         {
@@ -42,6 +43,8 @@ namespace Chess20.Controllers
                 .Where(u => u.Roles
                 .Any(r => r.RoleId == roleId))
                 .ToList();
+
+            ViewBag.UsersRole = id;
             return View(filteredUsers);
         }
 
@@ -100,11 +103,11 @@ namespace Chess20.Controllers
 
             EditUserViewModel user = new EditUserViewModel()
             {
-                Id=applicationUser.Id,
+                Id = applicationUser.Id,
                 Email = applicationUser.Email,
                 UserName = applicationUser.UserName,
                 Role = role,
-                Score=applicationUser.Score
+                Score = applicationUser.Score
             };
             return View(user);
         }
@@ -149,15 +152,29 @@ namespace Chess20.Controllers
             {
                 return HttpNotFound();
             }
+
             return View(applicationUser);
         }
 
         // POST: ApplicationUsers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public async Task<ActionResult> DeleteConfirmed(string id)
         {
             ApplicationUser applicationUser = (ApplicationUser)db.Users.Find(id);
+            await db.Games
+                .Where(g => g.Player1.Id == id || g.Player2.Id == id)
+                .ForEachAsync(g =>
+                    {
+                        if (g.Player1?.Id == id)
+                        {
+                            g.Player1 = null;
+                        }
+                        else
+                        {
+                            g.Player2 = null;
+                        };
+                    });
             db.Users.Remove(applicationUser);
             db.SaveChanges();
             return RedirectToAction("Index");
