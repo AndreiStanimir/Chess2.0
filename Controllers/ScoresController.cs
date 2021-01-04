@@ -119,7 +119,18 @@ namespace Chess20.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Score score = db.Scores.Find(id);
-            db.Scores.Remove(score);
+            if (db.Users.Where(u => u.Score.ScoreId == id).FirstOrDefault() == default)
+            {
+                db.Scores.Remove(score);
+            }
+            else
+            {
+                score.Elo = 1200;
+                score.Draws = 0;
+                score.Loses = 0;
+                score.Wins = 0;
+                db.Entry(score).State = EntityState.Modified;
+            }
             db.SaveChanges();
             return RedirectToAction("Index");
         }

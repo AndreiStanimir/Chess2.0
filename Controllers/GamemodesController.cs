@@ -11,7 +11,7 @@ using Chess20.Models;
 
 namespace Chess20.Controllers
 {
-    [Authorize(Roles =RoleName.Admin)]
+    //[Authorize(Roles =RoleName.Admin)]
     public class GamemodesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -52,7 +52,15 @@ namespace Chess20.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Gamemodes.Add(gamemode);
+                if (String.IsNullOrWhiteSpace(gamemode.Name))
+                {
+                    var newGamemode = new Gamemode(gamemode.Time, gamemode.Increment);
+                    db.Gamemodes.Add(newGamemode);
+                }
+                else
+                {
+                    db.Gamemodes.Add(gamemode);
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -84,6 +92,10 @@ namespace Chess20.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (String.IsNullOrWhiteSpace(gamemode.Name))
+                {
+                    gamemode.SetDefaultName(gamemode.Time, gamemode.Increment);
+                }
                 db.Entry(gamemode).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -112,6 +124,7 @@ namespace Chess20.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Gamemode gamemode = db.Gamemodes.Find(id);
+            db.Games.RemoveRange(db.Games.Where(g => g.Gamemode.GamemodeId == gamemode.GamemodeId));
             db.Gamemodes.Remove(gamemode);
             db.SaveChanges();
             return RedirectToAction("Index");

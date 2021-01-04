@@ -14,10 +14,35 @@ namespace Chess20.Models
 
         [Min(0, ErrorMessage = "Time can't be negative")]
         [Max(CONSTANTS.MAX_TIME, ErrorMessage = "Too much time")]
-        public int Time { get; set; }
+        public int Time { get; set; } //in seconds
 
         [Min(0, ErrorMessage = "Time can't be negative")]
         [Max(CONSTANTS.MAX_INCREMENT, ErrorMessage = "Increment too high")]
-        public int Increment { get; set; }
+        public int Increment { get; set; } //in seconds
+
+        private readonly int[] gamemode_limits = { 30, 15, 3, 0 };
+        private readonly string[] standard_gamemode_names = { "Classical", "Standard", "Blitz", "Bullet" };
+        public Gamemode()
+        {
+
+        }
+        public Gamemode(int time, int increment)
+        {
+            SetDefaultName(time, increment);
+        }
+        public void SetDefaultName(int time, int increment)
+        {
+            Time = time;
+            Increment = increment;
+            var totalPlayingTime = time / 60 + 40 / 60 * increment;
+            for (int i = 0; i < gamemode_limits.Length; i++)
+            {
+                if (totalPlayingTime >= gamemode_limits[i])
+                {
+                    Name = standard_gamemode_names[i];
+                    break;
+                }
+            }
+        }
     }
 }

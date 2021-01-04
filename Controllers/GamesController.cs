@@ -11,7 +11,7 @@ using Chess20.Models;
 
 namespace Chess20.Controllers
 {
-    [Authorize(Roles = RoleName.Admin)]
+    //[Authorize(Roles = RoleName.Admin)]
     public class GamesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -40,6 +40,21 @@ namespace Chess20.Controllers
         // GET: Games/Create
         public ActionResult Create()
         {
+
+            List<SelectListItem> users = db.Users
+                .Select(u => new SelectListItem
+                {
+                    Value = u.Id,
+                    Text = u.UserName
+                })
+                .ToList();
+            List<SelectListItem> gamemodes = db.Gamemodes.Select(g => new SelectListItem
+            {
+                Value = g.GamemodeId.ToString(),
+                Text = g.Name
+            }).ToList();
+            ViewBag.Users = users;
+            ViewBag.Gamemodes = gamemodes;
             return View();
         }
 
@@ -48,16 +63,36 @@ namespace Chess20.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "GameId,Timer1,Timer2,Moves,Winner")] Game game)
+        public ActionResult Create([Bind(Include = "GameId,Player1Id,Player2Id,GamemodeId,Moves,Winner")] GameCreateViewModel gameCreateViewModel)
         {
             if (ModelState.IsValid)
             {
+                var player1 = db.Users.Find(gameCreateViewModel.Player1Id);
+                var player2 = db.Users.Find(gameCreateViewModel.Player2Id);
+                var gamemode = db.Gamemodes.Find(gameCreateViewModel.GamemodeId);
+
+                if (gamemode == null)
+                    gamemode = new Gamemode(1, 0);
+
+                Game game = new Game(gamemode)
+                {
+                    GameId = gameCreateViewModel.GameId,
+                    Player1 = player1,
+                    Player2 = player2,
+                    Moves = gameCreateViewModel.Moves,
+                    Winner = gameCreateViewModel.Winner,
+                    //Timer1=gameCreateViewModel.Timer1,
+                    //Timer2= gameCreateViewModel.Timer2,
+                    
+
+                };
+                
                 db.Games.Add(game);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(game);
+            return View(gameCreateViewModel);
         }
 
         // GET: Games/Edit/5

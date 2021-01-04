@@ -14,7 +14,7 @@ using Chess20.Common;
 
 namespace Chess20.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -149,10 +149,8 @@ namespace Chess20.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterAdminViewModel model)
+        public async Task<ActionResult> Register(RegisterUserViewModel model)
         {
-            if (model.Role == null)
-                model.Role = RoleName.User;
             if (ModelState.IsValid)
             {
                 try
@@ -160,12 +158,12 @@ namespace Chess20.Controllers
                     var user = new ApplicationUser { 
                         UserName = model.Name, 
                         Email = model.Email,
-                        Score=new Score(),
+                        Score=new Score()
                         };
                     var result = await UserManager.CreateAsync(user, model.Password);
                     if (result.Succeeded)
                     {
-                        UserManager.AddToRole(user.Id, model.Role);
+                        UserManager.AddToRole(user.Id, RoleName.User);
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                         // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
@@ -189,14 +187,14 @@ namespace Chess20.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-        // POST: /Account/AdminRegister
-        [HttpPost]
-        [Authorize(Roles = RoleName.Admin)]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> AdminRegister(RegisterAdminViewModel model)
-        {
-            return await Register(model);
-        }
+        //// POST: /Account/AdminRegister
+        //[HttpPost]
+        //[Authorize(Roles = RoleName.Admin)]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> AdminRegister(RegisterAdminViewModel model)
+        //{
+        //    return await Register(model);
+        //}
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]

@@ -137,5 +137,8 @@ namespace Chess20.Models
         [Display(Name = "Role")]
         public string Role { get; set; }
 
+        [Display(Name = "Score")]
+        public Score Score;
+
     }
 }
