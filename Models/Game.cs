@@ -24,10 +24,17 @@ namespace Chess20.Models
         public int GameId { get; set; }
 
         //[Required]
+
+
         public virtual ApplicationUser Player1 { get; set; }
 
         //[Required]
         public virtual ApplicationUser Player2 { get; set; }
+
+        public string GetUsername1 { get => Player1 == null ? "Deleted User" : Player1?.UserName; }
+
+        public string GetUsername2 { get => Player2 == null ? "Deleted User" : Player2.UserName; }
+
 
         //[ForeignKey("Gamemode")]
 
