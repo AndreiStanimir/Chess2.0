@@ -1,13 +1,11 @@
-﻿using System;
+﻿using Chess20.Common;
+using Chess20.Models;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using Chess20.Common;
-using Chess20.Models;
 
 namespace Chess20.Controllers
 {
@@ -40,7 +38,6 @@ namespace Chess20.Controllers
         // GET: Games/Create
         public ActionResult Create()
         {
-
             List<SelectListItem> users = db.Users
                 .Select(u => new SelectListItem
                 {
@@ -59,7 +56,7 @@ namespace Chess20.Controllers
         }
 
         // POST: Games/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -83,10 +80,8 @@ namespace Chess20.Controllers
                     Winner = gameCreateViewModel.Winner,
                     //Timer1=gameCreateViewModel.Timer1,
                     //Timer2= gameCreateViewModel.Timer2,
-                    
-
                 };
-                
+
                 db.Games.Add(game);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -111,7 +106,7 @@ namespace Chess20.Controllers
         }
 
         // POST: Games/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]

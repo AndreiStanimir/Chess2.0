@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Chess20.Models;
+﻿using Chess20.Models;
+using System;
 
 namespace Chess20.Factories
 {

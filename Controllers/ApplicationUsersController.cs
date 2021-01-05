@@ -1,17 +1,15 @@
-﻿using System;
+﻿using Chess20.Common;
+using Chess20.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Security;
-using Chess20.Common;
-using Chess20.Models;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Chess20.Controllers
 {
@@ -20,16 +18,19 @@ namespace Chess20.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         private UserManager<ApplicationUser> userManager;
+
         //GET: ApplicationUsers
         public ApplicationUsersController()
         {
             userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
         }
+
         public ActionResult Index()
         {
             //var r = Roles.GetRolesForUser();
             return View(db.Users.ToList());
         }
+
         // GET: ApplicationUsers/IndexByRole/Role
         //[Route("ApplicationUsers/IndexByRole/{role}")]
         public ActionResult IndexByRole(string id = "User")
@@ -72,7 +73,7 @@ namespace Chess20.Controllers
         }
 
         // POST: ApplicationUsers/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -102,7 +103,6 @@ namespace Chess20.Controllers
             }
             string role = userManager.GetRoles(id).FirstOrDefault();
 
-
             EditUserViewModel user = new EditUserViewModel()
             {
                 Id = applicationUser.Id,
@@ -115,7 +115,7 @@ namespace Chess20.Controllers
         }
 
         // POST: ApplicationUsers/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]

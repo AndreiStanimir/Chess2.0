@@ -1,5 +1,5 @@
-﻿using System.Data.Entity;
-using Microsoft.AspNet.Identity.EntityFramework;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
 
 namespace Chess20.Models
 {
@@ -13,6 +13,7 @@ namespace Chess20.Models
 
         //public  DbSet<ApplicationUser> UsersData { get; set; } //useless
         public DbSet<Score> Scores { get; set; }
+
         public DbSet<Gamemode> Gamemodes { get; set; }
         public DbSet<Game> Games { get; set; }
 

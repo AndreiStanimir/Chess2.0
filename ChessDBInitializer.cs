@@ -3,13 +3,9 @@ using Chess20.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.SqlServer.Management.Smo;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 using static Chess20.Factories.UserFactory;
 
 namespace Chess20

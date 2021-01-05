@@ -22,14 +22,16 @@ namespace Chess20.Models
 
         private readonly int[] gamemode_limits = { 30, 15, 3, 0 };
         private readonly string[] standard_gamemode_names = { "Classical", "Standard", "Blitz", "Bullet" };
+
         public Gamemode()
         {
-
         }
+
         public Gamemode(int time, int increment)
         {
             SetDefaultName(time, increment);
         }
+
         public void SetDefaultName(int time, int increment)
         {
             Time = time;

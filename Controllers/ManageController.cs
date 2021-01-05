@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Chess20.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using Chess20.Models;
 
 namespace Chess20.Controllers
 {
@@ -32,9 +32,9 @@ namespace Chess20.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -235,7 +235,7 @@ namespace Chess20.Controllers
             {
                 result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 result = IdentityResult.Failed("validation error");
             }
@@ -341,7 +341,8 @@ namespace Chess20.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        #region Helpers
+
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -392,6 +393,6 @@ namespace Chess20.Controllers
             Error
         }
 
-#endregion
+        #endregion Helpers
     }
 }

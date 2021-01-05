@@ -1,11 +1,6 @@
 ﻿using Chess20.Common;
-using DataAnnotationsExtensions;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 
 namespace Chess20.Models
 {
@@ -25,7 +20,6 @@ namespace Chess20.Models
 
         //[Required]
 
-
         public virtual ApplicationUser Player1 { get; set; }
 
         //[Required]
@@ -34,7 +28,6 @@ namespace Chess20.Models
         public string GetUsername1 { get => Player1 == null ? "Deleted User" : Player1?.UserName; }
 
         public string GetUsername2 { get => Player2 == null ? "Deleted User" : Player2.UserName; }
-
 
         //[ForeignKey("Gamemode")]
 
@@ -87,5 +80,4 @@ namespace Chess20.Models
             Timer2 = TimeSpan.FromSeconds(Gamemode.Time);
         }
     }
-
 }
