@@ -12,16 +12,13 @@ namespace Chess20.Factories
         {
             return new ApplicationUser
             {
-                UserName = "Andrei2",
+                Id = Guid.NewGuid().ToString("D"),
+                UserName = "admin",
                 PhoneNumber = "+111111111111",
                 EmailConfirmed = true,
                 PhoneNumberConfirmed = true,
                 SecurityStamp = Guid.NewGuid().ToString("D"),
-
-                Email = "admin2@chess.com",
-                //Password = "123",
-
-                //Role = Roles.ApplicationUser,
+                Email = "admin@chess.com",
                 Score = new Score()
             };
         }
@@ -30,16 +27,26 @@ namespace Chess20.Factories
         {
             return new ApplicationUser
             {
-                UserName = "Andrei1",
+                UserName = "user",
                 PhoneNumber = "+111111111111",
                 EmailConfirmed = true,
                 PhoneNumberConfirmed = true,
                 SecurityStamp = Guid.NewGuid().ToString("D"),
-
                 Email = "player@chess.com",
-                //Password = "123",
+                Score = new Score()
+            };
+        }
 
-                //Role = Roles.ApplicationUser,
+        public static ApplicationUser GetPremium()
+        {
+            return new ApplicationUser
+            {
+                UserName = "premium",
+                PhoneNumber = "+111111111111",
+                EmailConfirmed = true,
+                PhoneNumberConfirmed = true,
+                SecurityStamp = Guid.NewGuid().ToString("D"),
+                Email = "premium@chess.com",
                 Score = new Score()
             };
         }

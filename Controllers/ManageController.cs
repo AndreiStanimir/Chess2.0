@@ -10,7 +10,7 @@ using Chess20.Models;
 
 namespace Chess20.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -230,7 +230,15 @@ namespace Chess20.Controllers
             {
                 return View(model);
             }
-            var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+            IdentityResult result;
+            try
+            {
+                result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+            }
+            catch(Exception e)
+            {
+                result = IdentityResult.Failed("validation error");
+            }
             if (result.Succeeded)
             {
                 var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());

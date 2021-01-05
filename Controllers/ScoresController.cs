@@ -11,7 +11,7 @@ using Chess20.Models;
 
 namespace Chess20.Controllers
 {
-    //[Authorize(Roles = RoleName.Admin)]
+    [Authorize(Roles = RoleName.Admin)]
     public class ScoresController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -25,7 +25,6 @@ namespace Chess20.Controllers
         }
 
         // GET: Scores/Details/5
-        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)

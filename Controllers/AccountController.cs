@@ -14,7 +14,7 @@ using Chess20.Common;
 
 namespace Chess20.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -187,15 +187,7 @@ namespace Chess20.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-        //// POST: /Account/AdminRegister
-        //[HttpPost]
-        //[Authorize(Roles = RoleName.Admin)]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> AdminRegister(RegisterAdminViewModel model)
-        //{
-        //    return await Register(model);
-        //}
-        //
+       
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
