@@ -22,5 +22,7 @@ namespace Chess20.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public override string UserName { get => base.UserName ?? "Deleted User"; set => base.UserName = value; }
     }
 }

@@ -1,5 +1,5 @@
-﻿using System.Data.Entity;
-using Microsoft.AspNet.Identity.EntityFramework;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
 
 namespace Chess20.Models
 {
@@ -13,6 +13,7 @@ namespace Chess20.Models
 
         //public  DbSet<ApplicationUser> UsersData { get; set; } //useless
         public DbSet<Score> Scores { get; set; }
+
         public DbSet<Gamemode> Gamemodes { get; set; }
         public DbSet<Game> Games { get; set; }
 
@@ -20,16 +21,20 @@ namespace Chess20.Models
         {
             return new ApplicationDbContext();
         }
-//        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-//        {
-//            //base.OnModelCreating(modelBuilder);
-//            modelBuilder.Entity<TUserRole>()
-//            .HasKey(r => new {r.UserId, r.RoleId})
-//            .ToTable("AspNetUserRoles");
 
-//modelBuilder.Entity<TUserLogin>()
-//            .HasKey(l => new {l.LoginProvider, l.ProviderKey, l.UserId})
-//            .ToTable("AspNetUserLogins");
-//        }
+        public System.Data.Entity.DbSet<Chess20.Models.GameCreateViewModel> GameCreateViewModels { get; set; }
+
+        //public System.Data.Entity.DbSet<Chess20.Models.ApplicationUser> ApplicationUsers { get; set; }
+        //        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //        {
+        //            //base.OnModelCreating(modelBuilder);
+        //            modelBuilder.Entity<TUserRole>()
+        //            .HasKey(r => new {r.UserId, r.RoleId})
+        //            .ToTable("AspNetUserRoles");
+
+        //modelBuilder.Entity<TUserLogin>()
+        //            .HasKey(l => new {l.LoginProvider, l.ProviderKey, l.UserId})
+        //            .ToTable("AspNetUserLogins");
+        //        }
     }
 }

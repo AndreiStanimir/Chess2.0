@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Chess20.Common;
+using Chess20.Models;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using Chess20.Models;
 
 namespace Chess20.Controllers
 {
+    [Authorize(Roles = RoleName.Admin)]
     public class ScoresController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Scores
+        [AllowAnonymous]
         public ActionResult Index()
         {
             var scores = db.Scores.Include(s => s.ApplicationUser);
@@ -44,7 +44,7 @@ namespace Chess20.Controllers
         }
 
         // POST: Scores/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -78,7 +78,7 @@ namespace Chess20.Controllers
         }
 
         // POST: Scores/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -115,7 +115,18 @@ namespace Chess20.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Score score = db.Scores.Find(id);
-            db.Scores.Remove(score);
+            if (db.Users.Where(u => u.Score.ScoreId == id).FirstOrDefault() == default)
+            {
+                db.Scores.Remove(score);
+            }
+            else
+            {
+                score.Elo = 1200;
+                score.Draws = 0;
+                score.Loses = 0;
+                score.Wins = 0;
+                db.Entry(score).State = EntityState.Modified;
+            }
             db.SaveChanges();
             return RedirectToAction("Index");
         }
