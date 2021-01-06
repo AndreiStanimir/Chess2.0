@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Chess20.Models.Score>
+﻿@using Chess20.Common
+@model IEnumerable<Chess20.Models.Score>
 
 @{
     ViewBag.Title = "Index";
@@ -6,9 +7,13 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@if (User.IsInRole(RoleName.Admin))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+
 <table class="table">
     <tr>
         <th>
@@ -26,32 +31,38 @@
         <th>
             @Html.DisplayNameFor(model => model.Loses)
         </th>
-        <th></th>
+        @if (User.IsInRole(RoleName.Admin))
+        {
+            <th></th>
+        }
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ApplicationUser.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Elo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Wins)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Draws)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Loses)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ScoreId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ScoreId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ScoreId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationUser.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Elo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Wins)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Draws)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Loses)
+            </td>
+            <td>
+                @if (User.IsInRole(RoleName.Admin))
+                {
 
+                    Html.ActionLink("Edit", "Edit", new { id = item.ScoreId });
+                    Html.ActionLink("Delete", "Delete", new { id = item.ScoreId });
+                }
+            </td>
+        </tr>
+    }
 </table>

@@ -9,7 +9,9 @@
 <div>
     <h4>ApplicationUser</h4>
     <hr />
+    @*@Html.HiddenFor(Model=>Model.Id)*@
     <dl class="dl-horizontal">
+
         <dt>
             @Html.DisplayNameFor(model => model.Email)
         </dt>
@@ -18,7 +20,7 @@
             @Html.DisplayFor(model => model.Email)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.EmailConfirmed)
         </dt>
 
@@ -88,7 +90,7 @@
 
         <dd>
             @Html.DisplayFor(model => model.AccessFailedCount)
-        </dd>
+        </dd>*@
 
         <dt>
             @Html.DisplayNameFor(model => model.UserName)
@@ -98,11 +100,12 @@
             @Html.DisplayFor(model => model.UserName)
         </dd>
 
-      
-
+        <dd>
+            @Html.Partial("../Scores/_Details",Model.Score)
+        </dd>
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Edit", "../Scores/Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

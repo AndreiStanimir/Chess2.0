@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace Chess20
 {
@@ -38,8 +37,6 @@ namespace Chess20
                 //"~/Scripts/bootstrap.js",
                 "~/chessboardjs/js/chessboard-1.0.0.js",
                 "~/chessjs/chess.js"));
-
-
         }
     }
 }
