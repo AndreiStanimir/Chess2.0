@@ -44,12 +44,12 @@
                             <li>@Html.ActionLink("Gamemodes", "", "Gamemodes")</li>
                             <li>@Html.ActionLink("Games", "", "Games")</li>
                             <li>@Html.ActionLink("Puzzles", "", "Puzzles")</li>
-                            <li>@Html.ActionLink("Play Puzzle", "", "PlayPuzzle")</li>
+                            <li>@Html.ActionLink("Play Puzzle", "PlayPuzzle", "Puzzles")</li>
                         }
                         if (User.IsInRole(RoleName.Premium))
                         {
                             <li>@Html.ActionLink("Play", "", "PlayChess")</li>
-                            <li>@Html.ActionLink("Puzzles", "", "Puzzles")</li>
+                            <li>@Html.ActionLink("Puzzle", "PlayPuzzle", "Puzzles")</li>
 
                         }
                         if (User.IsInRole(RoleName.User))

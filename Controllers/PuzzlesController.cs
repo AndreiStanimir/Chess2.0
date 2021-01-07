@@ -16,19 +16,21 @@ namespace Chess20.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Puzzles
+        // GET: PlayPuzzle
         [Authorize(Roles = RoleName.Premium + "," + RoleName.Admin)]
         public ActionResult PlayPuzzle()
         {
             return View();
         }
 
+        [Authorize(Roles = RoleName.Admin)]
         public ActionResult Index()
         {
             return View(db.Puzzles.ToList());
         }
 
         // GET: Puzzles/Details/5
+        [Authorize(Roles = RoleName.Admin)]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -44,6 +46,7 @@ namespace Chess20.Controllers
         }
 
         // GET: Puzzles/Create
+        [Authorize(Roles = RoleName.Admin)]
         public ActionResult Create()
         {
             return View();
@@ -54,6 +57,7 @@ namespace Chess20.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleName.Admin)]
         public ActionResult Create([Bind(Include = "PuzzleId,Moves,StartingPosition,Elo")] Puzzle puzzle)
         {
             if (ModelState.IsValid)
@@ -67,6 +71,7 @@ namespace Chess20.Controllers
         }
 
         // GET: Puzzles/Edit/5
+        [Authorize(Roles = RoleName.Admin)]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -86,6 +91,7 @@ namespace Chess20.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleName.Admin)]
         public ActionResult Edit([Bind(Include = "PuzzleId,Moves,StartingPosition,Elo")] Puzzle puzzle)
         {
             if (ModelState.IsValid)
@@ -98,6 +104,7 @@ namespace Chess20.Controllers
         }
 
         // GET: Puzzles/Delete/5
+        [Authorize(Roles = RoleName.Admin)]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -115,6 +122,7 @@ namespace Chess20.Controllers
         // POST: Puzzles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleName.Admin)]
         public ActionResult DeleteConfirmed(int id)
         {
             Puzzle puzzle = db.Puzzles.Find(id);
