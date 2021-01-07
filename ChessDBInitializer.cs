@@ -11,7 +11,7 @@ using static Chess20.Factories.UserFactory;
 
 namespace Chess20
 {
-    public class ChessDBInitializer : DropCreateDatabaseAlways<ApplicationDbContext>
+    public class ChessDBInitializer : DropCreateDatabaseIfModelChanges<ApplicationDbContext>
     {
         protected override void Seed(ApplicationDbContext context)
         {

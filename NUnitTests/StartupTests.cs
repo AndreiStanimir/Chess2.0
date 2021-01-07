@@ -46,7 +46,7 @@ namespace NUnitTests
             var startup = this.CreateStartup();
 
             // Act
-            startup.CreateAdminAndUserRoles();
+            //startup.CreateAdminAndUserRoles();
 
             // Assert
             Assert.Fail();
