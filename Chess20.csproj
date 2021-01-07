@@ -110,6 +110,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Entities\Game.cs" />
+    <Compile Include="Models\Entities\Puzzle.cs" />
     <Compile Include="Models\GameCreateViewModel.cs" />
     <Compile Include="Models\Entities\Gamemode.cs" />
     <Compile Include="Models\Entities\ApplicationUser.cs" />
