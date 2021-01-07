@@ -1,8 +1,8 @@
-﻿using Chess20.Common;
+﻿using System.ComponentModel.DataAnnotations;
+using Chess20.Common;
 using DataAnnotationsExtensions;
-using System.ComponentModel.DataAnnotations;
 
-namespace Chess20.Models
+namespace Chess20.Models.Entities
 {
     public class Gamemode
     {

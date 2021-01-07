@@ -6,6 +6,7 @@ using Microsoft.SqlServer.Management.Smo;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Data.SqlClient;
+using Chess20.Models.Entities;
 using static Chess20.Factories.UserFactory;
 
 namespace Chess20

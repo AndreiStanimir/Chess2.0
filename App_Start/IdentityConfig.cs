@@ -7,6 +7,7 @@ using Microsoft.Owin.Security;
 using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Chess20.Models.Entities;
 
 namespace Chess20
 {

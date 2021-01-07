@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
+using Chess20.Models.Entities;
 
 namespace Chess20.Models
 {

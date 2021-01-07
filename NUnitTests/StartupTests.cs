@@ -6,6 +6,7 @@ using Moq;
 using NUnit.Framework;
 using Owin;
 using System.Web.Mvc;
+using Chess20.Models.Entities;
 
 namespace NUnitTests
 {

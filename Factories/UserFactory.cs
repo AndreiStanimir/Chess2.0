@@ -1,5 +1,6 @@
 ﻿using Chess20.Models;
 using System;
+using Chess20.Models.Entities;
 
 namespace Chess20.Factories
 {
