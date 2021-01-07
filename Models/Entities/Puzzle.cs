@@ -26,6 +26,7 @@ namespace Chess20.Models.Entities
 
         [Required]
         [Min(0, ErrorMessage = "Can't be negative")]
+        [Max(4000, ErrorMessage = "Elo must be lower than 4000")]
         public int Elo { get; set; }
     }
 }

@@ -25,6 +25,8 @@ namespace Chess20.Models
 
         public System.Data.Entity.DbSet<Chess20.Models.GameCreateViewModel> GameCreateViewModels { get; set; }
 
+        public System.Data.Entity.DbSet<Chess20.Models.Entities.Puzzle> Puzzles { get; set; }
+
         //public System.Data.Entity.DbSet<Chess20.Models.ApplicationUser> ApplicationUsers { get; set; }
         //        protected override void OnModelCreating(DbModelBuilder modelBuilder)
         //        {
