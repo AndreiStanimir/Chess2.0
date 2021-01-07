@@ -26,6 +26,8 @@
 
                         if (User.IsInRole(RoleName.Admin))
                         {
+                            <li>@Html.ActionLink("Play", "", "PlayChess")</li>
+
                             <li>
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                     Users
@@ -45,6 +47,7 @@
                         }
                         if (User.IsInRole(RoleName.Premium))
                         {
+                            <li>@Html.ActionLink("Play", "", "PlayChess")</li>
                             <li>@Html.ActionLink("Puzzles", "", "Puzzles")</li>
 
                         }
