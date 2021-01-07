@@ -109,12 +109,13 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
-    <Compile Include="Models\Game.cs" />
+    <Compile Include="Models\Entities\Game.cs" />
+    <Compile Include="Models\Entities\Puzzle.cs" />
     <Compile Include="Models\GameCreateViewModel.cs" />
-    <Compile Include="Models\Gamemode.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Entities\Gamemode.cs" />
+    <Compile Include="Models\Entities\ApplicationUser.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Score.cs" />
+    <Compile Include="Models\Entities\Score.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Content Include="chessboardjs\css\chessboard-1.0.0.css" />
@@ -191,7 +192,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Content\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
@@ -211,8 +211,12 @@
     <Content Include="chessboardjs\README.md" />
     <Content Include="Views\ApplicationUsers\IndexByRole.cshtml" />
     <Content Include="Views\Puzzles\Index.cshtml" />
-    <Content Include="Views\Create2.cshtml" />
     <Content Include="Views\Create.cshtml" />
+    <Content Include="Views\Puzzles\Create.cshtml" />
+    <Content Include="Views\Puzzles\Delete.cshtml" />
+    <Content Include="Views\Puzzles\Details.cshtml" />
+    <Content Include="Views\Puzzles\Edit.cshtml" />
+    <Content Include="Views\Puzzles\PlayPuzzle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Antlr">

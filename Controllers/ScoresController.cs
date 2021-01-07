@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using Chess20.Models.Entities;
 
 namespace Chess20.Controllers
 {

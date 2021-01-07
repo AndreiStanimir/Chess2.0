@@ -10,6 +10,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using Chess20.Models.Entities;
 
 namespace Chess20.Controllers
 {

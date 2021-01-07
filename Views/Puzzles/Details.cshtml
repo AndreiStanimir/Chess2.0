@@ -1,0 +1,42 @@
+﻿@model Chess20.Models.Entities.Puzzle
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Puzzle</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Moves)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Moves)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartingPosition)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartingPosition)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Elo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Elo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PuzzleId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

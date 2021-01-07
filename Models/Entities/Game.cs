@@ -1,8 +1,8 @@
-﻿using Chess20.Common;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
+using Chess20.Common;
 
-namespace Chess20.Models
+namespace Chess20.Models.Entities
 {
     public enum Winner
     {
@@ -14,22 +14,19 @@ namespace Chess20.Models
 
     public class Game
     {
+        private const string TIME_REGEX = @"((([0-1][0-9])|(2[0-3]))(:[0-5][0-9])(:[0-5][0-9])?)";
+
         [Required]
         [Key]
         public int GameId { get; set; }
 
-        //[Required]
-
         public virtual ApplicationUser Player1 { get; set; }
 
-        //[Required]
         public virtual ApplicationUser Player2 { get; set; }
 
         public string GetUsername1 { get => Player1 == null ? "Deleted User" : Player1?.UserName; }
 
         public string GetUsername2 { get => Player2 == null ? "Deleted User" : Player2.UserName; }
-
-        //[ForeignKey("Gamemode")]
 
         private Gamemode gamemode;
 
@@ -48,13 +45,11 @@ namespace Chess20.Models
         }
 
         [Required]
-        [RegularExpression(@"((([0-1][0-9])|(2[0-3]))(:[0-5][0-9])(:[0-5][0-9])?)", ErrorMessage = "Time must be between 00:00:00 to 23:59:59")]
+        [RegularExpression(TIME_REGEX, ErrorMessage = "Time must be between 00:00:00 to 23:59:59")]
         public TimeSpan Timer1 { get; set; }
 
         [Required]
-        [RegularExpression(@"((([0-1][0-9])|(2[0-3]))(:[0-5][0-9])(:[0-5][0-9])?)", ErrorMessage = "Time must be between 00:00:00 to 23:59:59")]
-
-        //[NotMapped]
+        [RegularExpression(TIME_REGEX, ErrorMessage = "Time must be between 00:00:00 to 23:59:59")]
         public TimeSpan Timer2 { get; set; }
 
         [Required]
@@ -66,11 +61,6 @@ namespace Chess20.Models
 
         public Game()
         {
-            //if (Gamemode != null)
-            //{
-            //    Timer1 = TimeSpan.FromSeconds(Gamemode.Time);
-            //    Timer2 = TimeSpan.FromSeconds(Gamemode.Time);
-            //}
         }
 
         public Game(Gamemode gamemode)

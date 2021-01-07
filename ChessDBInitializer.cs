@@ -6,11 +6,12 @@ using Microsoft.SqlServer.Management.Smo;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Data.SqlClient;
+using Chess20.Models.Entities;
 using static Chess20.Factories.UserFactory;
 
 namespace Chess20
 {
-    public class ChessDBInitializer : DropCreateDatabaseAlways<ApplicationDbContext>
+    public class ChessDBInitializer : DropCreateDatabaseIfModelChanges<ApplicationDbContext>
     {
         protected override void Seed(ApplicationDbContext context)
         {
@@ -108,8 +109,7 @@ namespace Chess20
         private static ApplicationUser AddPremium(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager)
         {
             ApplicationUser user;
-            var role = new IdentityRole();
-            role.Name = RoleName.Premium;
+            var role = new IdentityRole { Name = RoleName.Premium };
             roleManager.Create(role);
 
             user = GetPremium();
@@ -126,8 +126,7 @@ namespace Chess20
         private static ApplicationUser AddAdmin(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager)
         {
             ApplicationUser admin;
-            var role = new IdentityRole();
-            role.Name = RoleName.Admin;
+            var role = new IdentityRole { Name = RoleName.Admin };
             roleManager.Create(role);
             // se adauga utilizatorul administrator
             admin = GetAdmin();

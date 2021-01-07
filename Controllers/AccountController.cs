@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Chess20.Models.Entities;
 
 namespace Chess20.Controllers
 {
@@ -182,7 +183,6 @@ namespace Chess20.Controllers
                 }
                 catch (DbEntityValidationException e)
                 {
-                    throw e;
                     var newException = new FormattedDbEntityValidationException(e);
                     throw newException;
                 }
