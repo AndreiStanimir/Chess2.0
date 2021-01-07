@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Chess20.Models.Entities;
 
 namespace Chess20.Models
 {

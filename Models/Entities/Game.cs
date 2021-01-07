@@ -1,8 +1,8 @@
-﻿using Chess20.Common;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
+using Chess20.Common;
 
-namespace Chess20.Models
+namespace Chess20.Models.Entities
 {
     public enum Winner
     {

@@ -1,5 +1,5 @@
 ﻿@using Chess20.Common
-@model IEnumerable<Chess20.Models.Score>
+@model IEnumerable<Chess20.Models.Entities.Score>
 
 @{
     ViewBag.Title = "Index";
@@ -33,7 +33,9 @@
         </th>
         @if (User.IsInRole(RoleName.Admin))
         {
-            <th></th>
+            <th>
+
+            </th>
         }
     </tr>
 
@@ -55,14 +57,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Loses)
             </td>
-            <td>
-                @if (User.IsInRole(RoleName.Admin))
-                {
-
-                    Html.ActionLink("Edit", "Edit", new { id = item.ScoreId });
-                    Html.ActionLink("Delete", "Delete", new { id = item.ScoreId });
-                }
-            </td>
+            @if (User.IsInRole(RoleName.Admin))
+            {
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ScoreId}) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ScoreId })
+                </td>
+            }
         </tr>
     }
 </table>

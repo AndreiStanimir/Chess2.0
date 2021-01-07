@@ -1,8 +1,8 @@
-﻿using DataAnnotationsExtensions;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using DataAnnotationsExtensions;
 
-namespace Chess20.Models
+namespace Chess20.Models.Entities
 {
     [Table("Score")]
     public class Score

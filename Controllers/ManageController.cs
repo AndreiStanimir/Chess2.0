@@ -235,7 +235,7 @@ namespace Chess20.Controllers
             {
                 result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
             }
-            catch (Exception e)
+            catch
             {
                 result = IdentityResult.Failed("validation error");
             }

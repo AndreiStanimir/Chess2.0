@@ -6,6 +6,7 @@ using Moq;
 using NUnit.Framework;
 using Owin;
 using System.Web.Mvc;
+using Chess20.Models.Entities;
 
 namespace NUnitTests
 {
@@ -45,7 +46,7 @@ namespace NUnitTests
             var startup = this.CreateStartup();
 
             // Act
-            startup.CreateAdminAndUserRoles();
+            //startup.CreateAdminAndUserRoles();
 
             // Assert
             Assert.Fail();
