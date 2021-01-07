@@ -109,8 +109,7 @@ namespace Chess20
         private static ApplicationUser AddPremium(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager)
         {
             ApplicationUser user;
-            var role = new IdentityRole();
-            role.Name = RoleName.Premium;
+            var role = new IdentityRole { Name = RoleName.Premium };
             roleManager.Create(role);
 
             user = GetPremium();
@@ -127,8 +126,7 @@ namespace Chess20
         private static ApplicationUser AddAdmin(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager)
         {
             ApplicationUser admin;
-            var role = new IdentityRole();
-            role.Name = RoleName.Admin;
+            var role = new IdentityRole { Name = RoleName.Admin };
             roleManager.Create(role);
             // se adauga utilizatorul administrator
             admin = GetAdmin();

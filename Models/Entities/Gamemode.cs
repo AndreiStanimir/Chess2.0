@@ -20,8 +20,8 @@ namespace Chess20.Models.Entities
         [Max(CONSTANTS.MAX_INCREMENT, ErrorMessage = "Increment too high")]
         public int Increment { get; set; } //in seconds
 
-        private readonly int[] gamemode_limits = { 30, 15, 3, 0 };
-        private readonly string[] standard_gamemode_names = { "Classical", "Standard", "Blitz", "Bullet" };
+        private readonly int[] _gamemodeLimits = { 30, 15, 3, 0 };
+        private readonly string[] _standardGamemodeNames = { "Classical", "Standard", "Blitz", "Bullet" };
 
         public Gamemode()
         {
@@ -36,12 +36,12 @@ namespace Chess20.Models.Entities
         {
             Time = time;
             Increment = increment;
-            var totalPlayingTime = time / 60 + 40 / 60 * increment;
-            for (int i = 0; i < gamemode_limits.Length; i++)
+            float totalPlayingTime = (float)time / 60 + 40 / 60 * increment;
+            for (int i = 0; i < _gamemodeLimits.Length; i++)
             {
-                if (totalPlayingTime >= gamemode_limits[i])
+                if (totalPlayingTime >= _gamemodeLimits[i])
                 {
-                    Name = standard_gamemode_names[i];
+                    Name = _standardGamemodeNames[i];
                     break;
                 }
             }
