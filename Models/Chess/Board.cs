@@ -1,4 +1,5 @@
 ﻿using Chess20.Models.Chess.Pieces;
+using System.Collections.Generic;
 
 namespace Chess20.Models.Chess
 {
@@ -6,18 +7,16 @@ namespace Chess20.Models.Chess
     {
         public const int MAX_X = 8;
         public const int MAX_Y = 8;
-        public Tile[,] tiles { get; private set; }
+        public BoardTiles tiles { get; private set; }
+
+        private int halfmovesCount;
+        private int fullmovesCount;
+
+        private string enpassantTargetSquare;
 
         public Board()
         {
-            tiles = new Tile[MAX_X, MAX_Y];
-            for (int i = 0; i < MAX_X; i++)
-            {
-                for (int j = 0; j < MAX_Y; j++)
-                {
-                    tiles[i, j] = new Tile();
-                }
-            }
+            tiles = new BoardTiles(MAX_X, MAX_Y);
         }
 
         public void SetPiece(Position pos, Piece piece)
@@ -40,6 +39,17 @@ namespace Chess20.Models.Chess
                 }
             }
             return true;
+        }
+
+        private void Turn()
+        {
+            //check if current player in check
+
+            //check if checkmate
+        }
+
+        private List<Move> GetMoves(Tile tile)
+        {
         }
     }
 }

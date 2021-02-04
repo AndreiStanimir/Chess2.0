@@ -1,5 +1,6 @@
 ﻿using Chess20.Common;
 using Chess20.Models.Chess.Pieces;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Chess20.Models.Chess
@@ -12,10 +13,15 @@ namespace Chess20.Models.Chess
 
         public Position Position { get; set; }
 
+        public int x { get => Position.X; }
+        public int y { get => Position.Y; }
+
         public bool Move(Position to)
         {
             throw new System.NotImplementedException();
         }
+
+        public abstract Move[] GetMoves(BoardTiles tiles);
 
         public override bool Equals(object obj)
         {

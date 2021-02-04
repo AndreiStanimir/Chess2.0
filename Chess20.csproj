@@ -111,6 +111,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Chess\Board.cs" />
+    <Compile Include="Models\Chess\BoardTiles.cs" />
     <Compile Include="Models\Chess\Factory.cs" />
     <Compile Include="Models\Chess\Game.cs" />
     <Compile Include="Models\Chess\IPiece.cs" />

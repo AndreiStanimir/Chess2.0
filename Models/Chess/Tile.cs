@@ -24,7 +24,7 @@ namespace Chess20.Models.Chess
                    EqualityComparer<Piece>.Default.Equals(Piece, tile.Piece);
         }
 
-        private bool IsEmpty() => Piece == null;
+        public bool IsEmpty() => Piece == null;
 
         public override int GetHashCode()
         {

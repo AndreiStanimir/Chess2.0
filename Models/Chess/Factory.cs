@@ -116,5 +116,10 @@ namespace Chess20.Models.Chess
 
             return board;
         }
+
+        public static Move GetMove(Tile source, Tile destination)
+        {
+            return new Move(source, destination);
+        }
     }
 }
