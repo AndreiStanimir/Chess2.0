@@ -29,6 +29,21 @@ namespace NUnitTests
         }
 
         [Test]
+        public void ConvertBoardToFen()
+        {
+            const string startPosition = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+
+            var board1 = Factory.GetBoardFromFEN(startPosition);
+            var board1Fen = Factory.GetFenFromBoard(board1);
+            Assert.AreEqual(startPosition, board1Fen);
+
+            const string randomPuzzle = "r1bq2rk/1p1p4/p1n1pPQp/3n4/4N3/1N1Bb3/PPP3PP/R4R1K w KQkq - 0 1";
+            var board = Factory.GetBoardFromFEN(randomPuzzle);
+            var actualFen = Factory.GetFenFromBoard(board);
+            Assert.AreEqual(randomPuzzle, actualFen);
+        }
+
+        [Test]
         public void PawnMoves()
         {
             var board = Factory.GetNewBoard();

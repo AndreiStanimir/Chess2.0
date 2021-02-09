@@ -1,5 +1,6 @@
 ﻿using Chess20.Common;
 using Chess20.Models.Chess.Pieces;
+using System.Linq;
 
 namespace Chess20.Models.Chess
 {
@@ -112,8 +113,49 @@ namespace Chess20.Models.Chess
                     }
                 }
             }
-
+            board.sideToMove = sideToMove == "w" ? Color.White : Color.Black;
+            board.castling = castling;
+            board.enpassantTargetSquare = enpassantTargetSquare;
+            board.halfmovesCount = int.Parse(halfmovesCount);
+            board.fullmovesCount = int.Parse(fullmovesCount);
             return board;
+        }
+
+        public static string GetFenFromBoard(Board board)
+        {
+            string[] fenBoard = new string[CONSTANTS.MAX_X];
+
+            for (int y = 0; y < CONSTANTS.MAX_Y; y++)
+            {
+                for (int x = 0; x < CONSTANTS.MAX_X; x++)
+                {
+                    if (board[y, x].Piece is null)
+                    {
+                        int consecutiveSquaresEmpty = 1;
+                        for (x = x + 1; x < CONSTANTS.MAX_X; consecutiveSquaresEmpty++)
+                        {
+                            if (board[y, x].Piece is not null)
+                            {
+                                x -= 1;
+                                break;
+                            }
+                            x++;
+                        }
+                        fenBoard[y] += consecutiveSquaresEmpty;
+                    }
+                    else
+                    {
+                        if (board[y, x].Piece.Color == Color.White)
+                            fenBoard[y] += char.ToUpper(board[y, x].Piece.Symbol);
+                        else
+                            fenBoard[y] += board[y, x].Piece.Symbol;
+                    }
+                }
+            }
+            var fen = string.Join("/", fenBoard);
+            fen += " " + string.Join(" ", new object[] { board.sideToMove == Color.White ? "w" : "b", board.castling, board.enpassantTargetSquare, board.halfmovesCount, board.fullmovesCount });
+
+            return fen;
         }
 
         public static Move GetMove(Tile source, Tile destination)

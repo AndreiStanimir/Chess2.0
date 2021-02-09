@@ -1,4 +1,5 @@
-﻿using Chess20.Models.Chess.Pieces;
+﻿using Chess20.Common;
+using Chess20.Models.Chess.Pieces;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,10 +11,13 @@ namespace Chess20.Models.Chess
         public const int MAX_Y = 8;
         public BoardTiles tiles { get; private set; }
 
-        private int halfmovesCount;
-        private int fullmovesCount;
-
-        private string enpassantTargetSquare;
+        public Color sideToMove;
+        public int halfmovesCount;
+        public int fullmovesCount;
+        public string castling;
+        public bool CanWhiteCastle;
+        public bool CanBlackCastle;
+        public string enpassantTargetSquare;
 
         public Board()
         {
@@ -59,6 +63,27 @@ namespace Chess20.Models.Chess
                 return tiles.GetTiles()
                     .Where(t => t.Piece != null)
                     .Where(t => piece.GetType().Equals(t?.Piece.GetType()));
+        }
+
+        public Tile? this[int y, int x]
+        {
+            get
+            {
+                if (CONSTANTS.IsInside(y, x))
+                    return tiles[y, x];
+                return null;
+            }
+            set
+            {
+                if (CONSTANTS.IsInside(y, x))
+                    tiles[y, x] = value;
+            }
+        }
+
+        public Tile? this[Position p]
+        {
+            get { return this[p.Y, p.X]; }
+            set { tiles[p.Y, p.X] = value; }
         }
     }
 }
