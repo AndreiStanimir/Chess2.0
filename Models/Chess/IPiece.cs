@@ -8,6 +8,7 @@ namespace Chess20.Models.Chess
         Color Color { get; }
         char Symbol { get; }
         Position Position { get; set; }
+        public bool IsPinned { get; set; }
 
         bool Move(Position to);
 
