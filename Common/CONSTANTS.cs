@@ -7,7 +7,7 @@
         public const int MAX_X = 8;
         public const int MAX_Y = 8;
 
-        public static bool IsInside(int x, int y)
+        public static bool IsInside(int y, int x)
         {
             return 0 <= x && x <= MAX_X && 0 <= y && y <= MAX_Y;
         }

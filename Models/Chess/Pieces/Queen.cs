@@ -7,5 +7,10 @@ namespace Chess20.Models.Chess.Pieces
         public Queen(Color color) : base(color, 'q')
         {
         }
+
+        public override Move[] GetMoves(BoardTiles tiles)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

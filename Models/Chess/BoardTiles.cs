@@ -14,34 +14,42 @@ namespace Chess20.Models.Chess
         public BoardTiles(int mAX_X, int mAX_Y)
         {
             tiles = new Tile[mAX_X, mAX_Y];
-            for (int i = 0; i < mAX_X; i++)
+            for (int x = 0; x < mAX_X; x++)
             {
-                for (int j = 0; j < mAX_Y; j++)
+                for (int y = 0; y < mAX_Y; y++)
                 {
-                    tiles[i, j] = new Tile();
+                    tiles[y, x] = new Tile(y, x);
                 }
             }
         }
 
-        public Tile? this[int x, int y]
+        public Tile? this[int y, int x]
         {
             get
             {
-                if (CONSTANTS.IsInside(x, y))
-                    return tiles[x, y];
+                if (CONSTANTS.IsInside(y, x))
+                    return tiles[y, x];
                 return null;
             }
             set
             {
-                if (CONSTANTS.IsInside(x, y))
-                    tiles[x, y] = value;
+                if (CONSTANTS.IsInside(y, x))
+                    tiles[y, x] = value;
             }
         }
 
         public Tile? this[Position p]
         {
-            get { return this[p.X, p.Y]; }
-            set { tiles[p.X, p.Y] = value; }
+            get { return this[p.Y, p.X]; }
+            set { tiles[p.Y, p.X] = value; }
+        }
+
+        public IEnumerable<Tile> GetTiles()
+        {
+            foreach (var t in tiles)
+            {
+                yield return (Tile)t;
+            }
         }
     }
 }

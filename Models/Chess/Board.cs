@@ -1,5 +1,6 @@
 ﻿using Chess20.Models.Chess.Pieces;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Chess20.Models.Chess
 {
@@ -22,7 +23,7 @@ namespace Chess20.Models.Chess
         public void SetPiece(Position pos, Piece piece)
         {
             piece.Position = pos;
-            tiles[pos.X, pos.Y].SetPiece(piece, pos);
+            tiles[pos.Y, pos.X].SetPiece(piece, pos);
         }
 
         public override bool Equals(object obj)
@@ -48,8 +49,16 @@ namespace Chess20.Models.Chess
             //check if checkmate
         }
 
-        private List<Move> GetMoves(Tile tile)
+        public IEnumerable<Tile> GetTilesWithPieces(Piece piece = null)
         {
+            if (piece is null)
+            {
+                return tiles.GetTiles().Where(t => !t.IsEmpty());
+            }
+            else
+                return tiles.GetTiles()
+                    .Where(t => t.Piece != null)
+                    .Where(t => piece.GetType().Equals(t?.Piece.GetType()));
         }
     }
 }

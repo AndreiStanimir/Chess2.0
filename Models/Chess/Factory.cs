@@ -30,7 +30,7 @@ namespace Chess20.Models.Chess
             return board;
         }
 
-        public static Pawn GetPawn(Color c)
+        public static Pawn GetPawn(Color c = Color.White)
         {
             return new Pawn(c);
         }
@@ -91,25 +91,24 @@ namespace Chess20.Models.Chess
             var halfmovesCount = fen_split[4];
             var fullmovesCount = fen_split[5];
 
-            for (int i = 0; i < 8; i++)
+            for (int y = 0; y < 8; y++)
             {
-                var indexPiece = 0;
-                for (int j = 0; j < boardLines[i].Length; j++)
+                for (int x = 0, iLine = 0; x < 8 && iLine < boardLines[y].Length; iLine++)
                 {
-                    var c = boardLines[i][j];
+                    var c = boardLines[y][iLine];
                     int number;
                     bool isNum = int.TryParse(c.ToString(), out number);
                     if (isNum)
                     {
-                        for (; indexPiece < number; indexPiece++)
+                        for (int indexPiece = 0; indexPiece < number; indexPiece++, x++)
                         {
-                            board.tiles[i, j].SetPiece();
+                            board.tiles[y, x].SetPiece();
                         }
                     }
                     else
                     {
-                        board.tiles[i, j].SetPiece(GetPiece(boardLines[i][j]), new Position(i, j));
-                        indexPiece++;
+                        board.tiles[y, x].SetPiece(GetPiece(boardLines[y][iLine]), new Position(y, x));
+                        x++;
                     }
                 }
             }

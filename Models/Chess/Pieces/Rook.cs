@@ -7,5 +7,10 @@ namespace Chess20.Models.Chess.Pieces
         public Rook(Color color) : base(color, 'r')
         {
         }
+
+        public override Move[] GetMoves(BoardTiles tiles)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

@@ -7,5 +7,10 @@ namespace Chess20.Models.Chess.Pieces
         public Bishop(Color color) : base(color, 'b')
         {
         }
+
+        public override Move[] GetMoves(BoardTiles tiles)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

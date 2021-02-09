@@ -12,7 +12,7 @@ namespace Chess20.Models.Chess.Pieces
             X = Y = -1;
         }
 
-        public Position(int x, int y)
+        public Position(int y, int x)
         {
             X = x;
             Y = y;
