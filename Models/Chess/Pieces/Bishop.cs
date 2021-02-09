@@ -2,15 +2,17 @@
 
 namespace Chess20.Models.Chess.Pieces
 {
-    public class Bishop : Piece
+    public class Bishop : Piece,
     {
+        private BishopBehaviour;
+
         public Bishop(Color color) : base(color, 'b')
         {
+            BishopBehaviour = Factory.
         }
 
-        public override Move[] GetMoves(BoardTiles tiles)
+        protected override Move[] GetMoves(BoardTiles tiles)
         {
-            throw new System.NotImplementedException();
         }
     }
 }
