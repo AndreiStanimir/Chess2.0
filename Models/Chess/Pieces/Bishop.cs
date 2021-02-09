@@ -8,7 +8,7 @@ namespace Chess20.Models.Chess.Pieces
         {
         }
 
-        protected override Move[] GetMoves(BoardTiles tiles)
+        public override Move[] GetMoves(BoardTiles tiles)
         {
             return BishopBehaviour.GetMoves(tiles, Position);
         }

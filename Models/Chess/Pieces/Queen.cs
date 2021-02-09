@@ -1,4 +1,5 @@
 ﻿using Chess20.Common;
+using System.Linq;
 
 namespace Chess20.Models.Chess.Pieces
 {
@@ -10,7 +11,9 @@ namespace Chess20.Models.Chess.Pieces
 
         public override Move[] GetMoves(BoardTiles tiles)
         {
-            throw new System.NotImplementedException();
+            return BishopBehaviour.GetMoves(tiles, Position)
+                .Concat(RookBehaviour.GetMoves(tiles, Position))
+                .ToArray();
         }
     }
 }

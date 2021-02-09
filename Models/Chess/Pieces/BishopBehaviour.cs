@@ -36,3 +36,4 @@ namespace Chess20.Models.Chess.Pieces
             return moves;
         }
     }
+}

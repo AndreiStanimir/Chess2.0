@@ -11,9 +11,6 @@ namespace Chess20.Models.Chess.Pieces
 
         public override Move[] GetMoves(BoardTiles tiles)
         {
-            if (IsPinned)
-                return new Move[0];
-
             var offsetsY = new int[] { -2, -2, 2, 2, -1, -1, 1, 1 };
             var offsetsX = new int[] { 1, -1, 1, -1, 2, -2, 2, -2 };
             var moves = new List<Move>(8);

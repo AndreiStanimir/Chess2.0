@@ -118,9 +118,11 @@
     <Compile Include="Models\Chess\Move.cs" />
     <Compile Include="Models\Chess\Piece.cs" />
     <Compile Include="Models\Chess\Pieces\Bishop.cs" />
+    <Compile Include="Models\Chess\Pieces\BishopBehaviour.cs" />
     <Compile Include="Models\Chess\Pieces\King.cs" />
     <Compile Include="Models\Chess\Pieces\Knight.cs" />
     <Compile Include="Models\Chess\Pieces\Pawn.cs" />
+    <Compile Include="Models\Chess\Pieces\RookBehaviour.cs" />
     <Compile Include="Models\Chess\Position.cs" />
     <Compile Include="Models\Chess\Pieces\Queen.cs" />
     <Compile Include="Models\Chess\Pieces\Rook.cs" />
