@@ -16,6 +16,8 @@ namespace Chess20.Models.Chess
         public int x { get => Position.X; }
         public int y { get => Position.Y; }
 
+        public bool IsPinned { get; set; }
+
         public bool Move(Position to)
         {
             throw new System.NotImplementedException();

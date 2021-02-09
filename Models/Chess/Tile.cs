@@ -8,6 +8,7 @@ namespace Chess20.Models.Chess
     {
         private IPiece piece;
         public Position Position { get; set; }
+        public bool IsAttacked { get; set; }
 
         public IPiece Piece
         {
