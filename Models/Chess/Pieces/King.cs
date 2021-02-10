@@ -9,7 +9,7 @@ namespace Chess20.Models.Chess.Pieces
         {
         }
 
-        public override Move[] GetMoves(BoardTiles tiles)
+        public override Move[] GetMoves(Board tiles)
         {
             var moves = new List<Move>(9);
             for (int i = -1; i <= 1; i++)

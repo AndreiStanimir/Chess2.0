@@ -21,10 +21,10 @@ namespace NUnitTests
             //Assert.AreEqual(Board1.tiles[7, 1].Piece.Position, Board2.tiles[7, 1].Piece.Position);
             //Assert.AreEqual(Board1.tiles[7, 1].Piece, Board2.tiles[7, 1].Piece);
             //Assert.AreEqual(Board1.tiles[7, 1], Board2.tiles[7, 1]);
-            var tile1 = Board1.tiles.GetTiles().ToList();
-            var tile2 = Board2.tiles.GetTiles().ToList();
+            var tile1 = Board1.GetTiles().ToList();
+            var tile2 = Board2.GetTiles().ToList();
             CollectionAssert.AreEqual(tile1, tile2);
-            Assert.AreNotEqual(Board1.tiles, board3.tiles);
+            Assert.AreNotEqual(Board1, board3);
             //Assert.AreEqual(Board1, Board2);
         }
 
@@ -53,7 +53,7 @@ namespace NUnitTests
             var pawn = tiles
                 .Where(t => t.Piece.Position.Equals(position))
                 .First();
-            Move[] actualMoves = pawn.Piece.GetMoves(board.tiles);
+            Move[] actualMoves = pawn.Piece.GetMoves(board);
             Move[] expectedMoves = new Move[]
                {
                     new Move(pawn,new Tile(position.Y-1,position.X)),
@@ -65,7 +65,7 @@ namespace NUnitTests
             pawn = tiles
                 .Where(t => t.Piece.Position.Equals(position))
                 .First();
-            actualMoves = pawn.Piece.GetMoves(board.tiles);
+            actualMoves = pawn.Piece.GetMoves(board);
             expectedMoves = new Move[]
                {
                     new Move(pawn,new Tile(position.Y+1,position.X)),

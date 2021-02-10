@@ -12,7 +12,7 @@ namespace Chess20.Models.Chess.Pieces
             offset = color == Color.White ? -1 : 1;
         }
 
-        public override Move[] GetMoves(BoardTiles tiles)
+        public override Move[] GetMoves(Board tiles)
         {
             var moves = new List<Move>(4);
 

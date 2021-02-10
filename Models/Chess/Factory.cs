@@ -103,12 +103,12 @@ namespace Chess20.Models.Chess
                     {
                         for (int indexPiece = 0; indexPiece < number; indexPiece++, x++)
                         {
-                            board.tiles[y, x].SetPiece();
+                            board[y, x].SetPiece();
                         }
                     }
                     else
                     {
-                        board.tiles[y, x].SetPiece(GetPiece(boardLines[y][iLine]), new Position(y, x));
+                        board[y, x].SetPiece(GetPiece(boardLines[y][iLine]), new Position(y, x));
                         x++;
                     }
                 }

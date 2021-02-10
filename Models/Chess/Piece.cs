@@ -23,7 +23,7 @@ namespace Chess20.Models.Chess
             throw new System.NotImplementedException();
         }
 
-        public Move[] GetValidMoves(BoardTiles tiles)
+        public Move[] GetValidMoves(Board tiles)
         {
             if (IsPinned)
                 return new Move[0];
@@ -31,7 +31,7 @@ namespace Chess20.Models.Chess
             return GetMoves(tiles);
         }
 
-        public abstract Move[] GetMoves(BoardTiles tiles);
+        public abstract Move[] GetMoves(Board tiles);
 
         public override bool Equals(object obj)
         {

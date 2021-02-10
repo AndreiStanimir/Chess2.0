@@ -12,6 +12,6 @@ namespace Chess20.Models.Chess
 
         bool Move(Position to);
 
-        public abstract Move[] GetMoves(BoardTiles tiles);
+        public abstract Move[] GetMoves(Board tiles);
     }
 }

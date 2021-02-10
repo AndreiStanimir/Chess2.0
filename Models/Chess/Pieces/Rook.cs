@@ -8,7 +8,7 @@ namespace Chess20.Models.Chess.Pieces
         {
         }
 
-        public override Move[] GetMoves(BoardTiles tiles)
+        public override Move[] GetMoves(Board tiles)
         {
             return RookBehaviour.GetMoves(tiles, Position);
         }
